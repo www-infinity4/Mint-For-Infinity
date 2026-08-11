@@ -1,0 +1,9 @@
+{
+  "wallet_protocol": "infinity-wallet-v1",
+  "ledger_authority": "www-infinity4/INFINITY",
+  "source_key": "INFINITY_MINT",
+  "user_daily_allocation_limit": 10,
+  "one_at_a_time": true,
+  "primary_action": "MINT_NOTE",
+  "local_balance_authoritative": false
+}
