@@ -5,7 +5,7 @@
   "defaultViewPolicy": {
     "rightsOwnerBps": 1000,
     "talentBps": 100,
-    "viewerRewardUnits": 100,
+    "viewerRewardUnits": 0,
     "minimumCompletionBps": 5000,
     "unallocatedReferenceBps": 8800
   },

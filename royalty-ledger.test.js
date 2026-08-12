@@ -34,13 +34,13 @@ const {
     timestamp: '2026-08-12T00:01:00.000Z',
   });
   assert.equal(event.type, 'VIEW_ALLOCATION_SIMULATION');
-  assert.equal(event.postings.reduce((sum, item) => sum + item.debitUnits, 0), 1_200);
-  assert.equal(event.postings.reduce((sum, item) => sum + item.creditUnits, 0), 1_200);
+  assert.equal(event.postings.reduce((sum, item) => sum + item.debitUnits, 0), 1_100);
+  assert.equal(event.postings.reduce((sum, item) => sum + item.creditUnits, 0), 1_100);
 
   const balances = ledger.balances();
   assert.equal(balances['simulation:unclaimed:rights_owner:film:example-001:rights:unknown'], 1_000);
   assert.equal(balances['simulation:wallet:wallet:performer:talent'], 100);
-  assert.equal(balances['simulation:wallet:viewer:001:viewer-reward'], 100);
+  assert.equal(balances['simulation:wallet:viewer:001:viewer-reward'], 0);
 
   await assert.rejects(() => ledger.recordView({
     eventId: 'view:001', assetId: 'film:example-001', viewerWalletId: 'viewer:001',

@@ -33,6 +33,18 @@ jobs:
           cp royalty-ledger.js dist/royalty-ledger.js
           cp royalty-ledger-page.js dist/royalty-ledger-page.js
           cp royalty-policy.json dist/royalty-policy.json
+          cp intelligence-studio.html dist/intelligence-studio.html
+          cp intelligence-studio-page.js dist/intelligence-studio-page.js
+          cp household-sweep.html dist/household-sweep.html
+          cp household-sweep-page.js dist/household-sweep-page.js
+          cp infinity-ad-network.js dist/infinity-ad-network.js
+          cp ai-workforce.js dist/ai-workforce.js
+          cp household-needs.js dist/household-needs.js
+          cp economy-controls.js dist/economy-controls.js
+          cp media-intelligence.js dist/media-intelligence.js
+          cp catalog-bank.js dist/catalog-bank.js
+          cp catalog-provenance.js dist/catalog-provenance.js
+          cp -R catalogs dist/catalogs
           cp .nojekyll dist/.nojekyll
           cp -R assets dist/assets
 

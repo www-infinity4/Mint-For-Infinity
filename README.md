@@ -77,7 +77,7 @@ while unknown recipients remain in asset-specific unclaimed payable accounts.
 
 The first release is deliberately a browser simulator:
 
-- a $1 reference view defaults to a 10¢ rights-owner pool, 1¢ talent pool, and 1¢ viewer reward;
+- the legacy $1 reference view defaults to a 10¢ rights-owner pool, 1¢ talent pool, and no viewer charge or automatic reward;
 - amounts use 10,000 integer units per Infinity instead of floating-point money arithmetic;
 - duplicate event IDs are rejected;
 - events are SHA-256 linked and the full chain is revalidated;
@@ -98,3 +98,25 @@ npm run test:royalty
 
 The test covers balanced postings, default allocations, unclaimed routing, duplicate rejection,
 authoritative-receipt requirements, non-funding proposals, daily limits, and tamper detection.
+
+## AI advertising and catalog intelligence
+
+Open [`intelligence-studio.html`](intelligence-studio.html) for the full catalog brain, provisional
+company accounts, contextual campaign engine, claim queue, AI workforce, and advertising ledger.
+
+The StarQuest scan currently records 356 top-level titles, 637 episodes or presentations, 993
+content tokens, 357 unique claimant/source candidates, and 1,507 field-level claimant provenance
+records. It also creates 357 protected opening accounts with 35.70 Infinity of explicitly sourced
+catalog-discovery credits. The Goudey scanner reads the real card array and creates card-subject,
+player, featured-person, and publisher accounts without duplicating repeated names.
+
+The default advertising example charges 0.20 Infinity per qualified impression, pays each credited
+production company 0.10 Infinity, pays each credited person 0.01 Infinity, and charges the viewer
+nothing. Organization accounts may use a visible negative credit line and recover through product
+purchases, product Infinity coins, and expressly user-directed activity tokens.
+
+Open [`household-sweep.html`](household-sweep.html) to record unfinished repairs and generate
+explainable, permission-controlled local service opportunities.
+
+Read [`AI_ADVERTISING_SYSTEM.md`](AI_ADVERTISING_SYSTEM.md) for the worker boundaries, accounting
+sources, claim path, StarQuest scan, Goudey card adapter, placement rules, and verification model.
