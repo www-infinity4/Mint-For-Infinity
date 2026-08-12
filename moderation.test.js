@@ -42,7 +42,14 @@ async function approvedFetch(url) {
 
   const approved = await moderation.moderate({
     text: "Original poem and product description",
-    files: [],
+    files: [{
+      id: "poem-file",
+      name: "poem.md",
+      type: "text/markdown",
+      size: 28,
+      provenance: "USER_SUPPLIED",
+      async text() { return "Complete uploaded poem content"; }
+    }],
     images: [{
       id: "art-pad-1",
       dataUrl: "data:image/png;base64,dGVzdA==",
@@ -53,6 +60,7 @@ async function approvedFetch(url) {
   assert.equal(approved.decision, "APPROVED");
   assert.equal(approved.source, "infinity-ai-runtime");
   assert.ok(approved.records.some(record => record.assetId === "assembled-package"));
+  assert.ok(approved.records.some(record => record.assetId === "poem-file" && record.decision === "APPROVED"));
   assert.ok(approved.records.every(record => record.policyVersion === moderation.POLICY_VERSION));
 
   const offline = await moderation.moderate(
