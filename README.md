@@ -34,18 +34,32 @@ The Infinity Capital note uses:
 - reserved commit-serial and holder-signature areas
 - no Infinity symbol
 
-## Local moderation
+## Shared local moderation and private drafts
 
-Minting now runs through `moderation.js` before a note is stored:
+Minting now runs through the shared Infinity AI runtime at `http://127.0.0.1:11435`:
 
-1. Local rules reject executable/active-content uploads, unsupported file types, files above 25 MB, combined uploads above 50 MB, and text above 20,000 characters.
-2. The browser checks `http://127.0.0.1:8080/v1/models` for a keyless local model.
-3. ShieldGemma is preferred. Another local Gemma model is used when ShieldGemma is not installed.
-4. Text and one image of at most 4 MB are classified locally. The model must return `allow`, `review`, or `block` JSON.
-5. If the AI server is offline, only the deterministic file and size checks run. The interface states that clearly instead of recording a false AI approval.
-6. The result and timestamp are included in the local note record and its canonical hash input.
+1. Local envelope rules reject executable/active-content uploads, unsupported types, files above 25 MB, combined uploads above 50 MB, and oversized text.
+2. Text, writing, product/ad copy, rights notes, and the final assembled manifest pass through `TEXT_SAFETY`.
+3. Uploaded images, Art Pad creations, and the signature pass through `IMAGE_SAFETY`.
+4. Every moderation record preserves asset ID, digest when available, media type, provenance, policy version, decision, scan time, role, and model.
+5. `BLOCKED` and `REVIEW_REQUIRED` packages remain `LOCAL_DRAFT` and cannot mint.
+6. If the local runtime or a required ShieldGemma role is unavailable, moderation fails closed. The Mint never records a false AI approval.
+7. Locally minted records remain private and non-transferable until the future authenticated ledger and Git binding promote them.
 
-No API key is required and the moderation integration does not send note content to a cloud service.
+Audio, video, and PDF uploads are accepted into the private draft vault, but remain `REVIEW_REQUIRED` until a content-capable local scanner is connected. File-name and type inspection alone is not represented as full content approval.
+
+## Creation toolkit
+
+The page now includes:
+
+- Art Pad with finger/stylus drawing, brush controls, undo, redo, clear, and private attachment;
+- Writing Studio for complete text, license, and provenance notes;
+- direct microphone recording;
+- Product / Ad Builder with product, brand, description, price text, call-to-action, destination, and promo code;
+- existing image, audio, video, document, signature, and AI-curation tools;
+- visible draft states: `LOCAL_DRAFT`, `SCANNING`, `APPROVED`/`BLOCKED`/`REVIEW_REQUIRED`, `MINTABLE`, and `MINTED_LOCAL_PRIVATE`.
+
+User-supplied, user-created, user-recorded, user-signature, and AI-suggested provenance are kept distinct in the package manifest.
 
 ## Run the regression test
 
