@@ -1,0 +1,46 @@
+{
+  "schema": "infinity/royalty-policy/v1",
+  "status": "PROTOCOL_SIMULATION",
+  "unitsPerInfinity": 10000,
+  "defaultViewPolicy": {
+    "rightsOwnerBps": 1000,
+    "talentBps": 100,
+    "viewerRewardUnits": 100,
+    "minimumCompletionBps": 5000,
+    "unallocatedReferenceBps": 8800
+  },
+  "claimStates": [
+    "UNCLAIMED",
+    "PENDING",
+    "VERIFIED",
+    "DISPUTED"
+  ],
+  "spendingLanes": {
+    "dailyNoteMintUnits": 100000,
+    "dailyActivityUnits": 900000,
+    "dailyRetailSpendUnits": 3000000,
+    "verifiedTreePlantingGrantUnits": 10000000
+  },
+  "programProposals": [
+    {
+      "id": "program:grant-cardone",
+      "beneficiary": "Grant Cardone — claimant unverified",
+      "amountUnits": 50000000,
+      "status": "PROPOSED",
+      "createsSpendableBalance": false,
+      "requirements": [
+        "identity",
+        "permission",
+        "wallet binding",
+        "program terms",
+        "authorization"
+      ]
+    }
+  ],
+  "evidenceRules": {
+    "capturedUrl": "OBSERVED_SOURCE_METADATA_ONLY",
+    "modelProse": "INFERRED",
+    "identityVerification": "EXTERNAL_PROVIDER_OR_APPROVED_HUMAN_REVIEW",
+    "browserDemoEvents": "SIMULATED_NON_SPENDABLE"
+  }
+}
