@@ -5,20 +5,21 @@
   "main": "src/cart07.js",
   "scripts": {
     "start": "node src/cart07.js",
-    "test": "jest"
+    "test": "jest",
+    "test:royalty": "node royalty-ledger.test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/www-infinity/Mint-For-Infinity.git"
+    "url": "git+https://github.com/www-infinity4/Mint-For-Infinity.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/www-infinity/Mint-For-Infinity/issues"
+    "url": "https://github.com/www-infinity4/Mint-For-Infinity/issues"
   },
-  "homepage": "https://github.com/www-infinity/Mint-For-Infinity#readme",
+  "homepage": "https://www-infinity4.github.io/Mint-For-Infinity/",
   "devDependencies": {
     "jest": "^30.3.0"
   }

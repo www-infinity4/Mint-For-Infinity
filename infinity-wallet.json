@@ -5,5 +5,12 @@
   "user_daily_allocation_limit": 10,
   "one_at_a_time": true,
   "primary_action": "MINT_NOTE",
-  "local_balance_authoritative": false
+  "local_balance_authoritative": false,
+  "royalty_ledger": {
+    "protocol": "infinity/royalty-ledger-event/v1",
+    "policy": "royalty-policy.json",
+    "current_mode": "SIMULATION",
+    "authoritative_view_receipts_required": true,
+    "unclaimed_payables_reserved": true
+  }
 }

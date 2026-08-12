@@ -68,3 +68,33 @@ node moderation.test.js
 ```
 
 The wallet and $10-per-local-calendar-day limit remain browser-local. Shared-wallet synchronization and Git commit binding are separate future services; the interface continues to mark new records as provisional until those services exist.
+
+## Royalty Ledger protocol
+
+Open [`royalty-ledger.html`](royalty-ledger.html) to inspect the mobile Royalty Ledger page.
+It turns each eligible view receipt into balanced viewer, rights-owner, and talent allocations,
+while unknown recipients remain in asset-specific unclaimed payable accounts.
+
+The first release is deliberately a browser simulator:
+
+- a $1 reference view defaults to a 10¢ rights-owner pool, 1¢ talent pool, and 1¢ viewer reward;
+- amounts use 10,000 integer units per Infinity instead of floating-point money arithmetic;
+- duplicate event IDs are rejected;
+- events are SHA-256 linked and the full chain is revalidated;
+- `UNCLAIMED`, `PENDING`, `VERIFIED`, and `DISPUTED` claims remain distinct;
+- source URLs are captured metadata, not automatic proof of copyright ownership;
+- proposals, including the $1,000 tree-planting program and proposed $5,000 Grant Cardone
+  allocation, create no spendable balance until their stated requirements are satisfied; and
+- ordinary retail, activity, minting, royalty, production, and planting lanes remain separate.
+
+Read [`ROYALTY_LEDGER.md`](ROYALTY_LEDGER.md) for the accounting contract, authoritative receipt
+requirements, claimant flow, account classes, and server/database milestone.
+
+Run the regression test:
+
+```bash
+npm run test:royalty
+```
+
+The test covers balanced postings, default allocations, unclaimed routing, duplicate rejection,
+authoritative-receipt requirements, non-funding proposals, daily limits, and tamper detection.

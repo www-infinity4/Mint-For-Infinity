@@ -29,6 +29,10 @@ jobs:
           cp index.html dist/index.html
           cp moderation.js dist/moderation.js
           cp creation-toolkit.js dist/creation-toolkit.js
+          cp royalty-ledger.html dist/royalty-ledger.html
+          cp royalty-ledger.js dist/royalty-ledger.js
+          cp royalty-ledger-page.js dist/royalty-ledger-page.js
+          cp royalty-policy.json dist/royalty-policy.json
           cp .nojekyll dist/.nojekyll
           cp -R assets dist/assets
 
