@@ -126,3 +126,36 @@ explainable, permission-controlled local service opportunities.
 
 Read [`AI_ADVERTISING_SYSTEM.md`](AI_ADVERTISING_SYSTEM.md) for the worker boundaries, accounting
 sources, claim path, StarQuest scan, Goudey card adapter, placement rules, and verification model.
+
+## Unified Infinity Wallet
+
+Open [`unified-wallet.html`](unified-wallet.html) for one wallet view spanning Infinity Mint,
+Alien Coin, Bitcoin Crusher, StarQuest and future Infinity pages. The wallet keeps source balances
+and individually owned collectibles together without pretending that unlike assets are identical.
+
+The core rules in `unified-wallet.js` are:
+
+- one wallet ID can hold balances and complete collectible tokens from several source systems;
+- receiving a Star Coin converts that receipt into a new blank Infinity token;
+- the blank token preserves its source event, content reference, creation time and hash-linked history;
+- formatting changes the same token instead of replacing its identity;
+- a collectible sale moves the entire token and provenance to the buyer while payment is recorded
+  as a separate balance transfer; and
+- duplicate source events cannot mint the same reward twice.
+
+A normal StarQuest movie unlock is not a sale of the collectible. The one-StarCoin consideration,
+the resulting blank token for the receiving rights account, and the 0.10 company / 0.01 credited-
+person Infinity allocations are separate hash-linked records. Rare authenticated collectibles are
+blocked from ordinary spending and may enter discovery-only search listings; owner approval and
+verified transfer are still required before a sale.
+
+All `www-infinity4.github.io` project pages share one browser origin, so pages using the same wallet
+engine and storage key see the same device-local wallet. Alien Coin and any differently hosted page
+use the explicit wallet-approval popup. Durable cross-device balances and real-value settlement still
+require authenticated server storage; browser storage is not represented as a bank-grade authority.
+
+`rarity-guardian.js` and `verification-gateway.js` enforce the protected-collectible and attribution
+rules. A typed name or copied signature cannot become a verified celebrity contribution. Passkeys
+may use a phone's fingerprint check without revealing fingerprint data to the site. Stripe and
+Plaid remain `NOT_CONFIGURED` until approved provider accounts, server credentials, and verified
+webhooks exist; GitHub provenance cannot replace those services.

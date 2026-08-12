@@ -39,6 +39,12 @@ jobs:
           cp household-sweep-page.js dist/household-sweep-page.js
           cp infinity-ad-network.js dist/infinity-ad-network.js
           cp collectible-value.js dist/collectible-value.js
+          cp unified-wallet.html dist/unified-wallet.html
+          cp unified-wallet.js dist/unified-wallet.js
+          cp unified-wallet-client.js dist/unified-wallet-client.js
+          cp unified-wallet-page.js dist/unified-wallet-page.js
+          cp rarity-guardian.js dist/rarity-guardian.js
+          cp verification-gateway.js dist/verification-gateway.js
           cp ai-workforce.js dist/ai-workforce.js
           cp household-needs.js dist/household-needs.js
           cp economy-controls.js dist/economy-controls.js
