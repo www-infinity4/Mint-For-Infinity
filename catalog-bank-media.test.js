@@ -13,6 +13,9 @@ const { createCosmoPlan } = require('./media-intelligence');
   assert.equal(bank.summary.totalOpeningUnits, 1_100);
   assert.equal(bank.accounts[0].availableToClaimUnits, 0);
   assert.equal(bank.accounts[0].protectedPendingUnits, 1_000);
+  assert.equal(bank.accounts[0].businessAllowancePolicy.dailyCapUnits, 10_000_000);
+  assert.equal(bank.accounts[0].businessAllowancePolicy.unusedBalanceAccumulates, true);
+  assert.equal(bank.accounts[1].businessAllowancePolicy, null);
   assert.equal(bank.evidenceClass, 'CATALOG_DISCOVERY_NOT_AI_WATCH_RECEIPT');
   assert.equal(bank.event.postings.reduce((sum, p) => sum + p.debitUnits, 0), bank.event.postings.reduce((sum, p) => sum + p.creditUnits, 0));
 

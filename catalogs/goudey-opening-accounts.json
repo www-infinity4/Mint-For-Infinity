@@ -30,6 +30,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -58,6 +59,20 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 1000,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": {
+        "eligible": true,
+        "dailyCapUnits": 10000000,
+        "collectionState": "ROBOT_COLLECTIBLE_BY_DATED_EVENT",
+        "unusedBalanceAccumulates": true,
+        "negativeBalanceDefault": false,
+        "customerFundingSources": [
+          "PRODUCT_PURCHASE",
+          "PRODUCT_INFINITY_COIN"
+        ],
+        "excludedFundingSources": [
+          "USER_ACTIVITY_TRANSFER"
+        ]
+      },
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -694,6 +709,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -722,6 +738,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -750,6 +767,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -778,6 +796,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -806,6 +825,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -834,6 +854,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -878,6 +899,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -922,6 +944,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -950,6 +973,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -978,6 +1002,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1006,6 +1031,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1042,6 +1068,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1070,6 +1097,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1098,6 +1126,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1126,6 +1155,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1162,6 +1192,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1198,6 +1229,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1234,6 +1266,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1294,6 +1327,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1330,6 +1364,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1358,6 +1393,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1386,6 +1422,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1430,6 +1467,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1530,6 +1568,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1558,6 +1597,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1586,6 +1626,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1614,6 +1655,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1642,6 +1684,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1670,6 +1713,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1698,6 +1742,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1726,6 +1771,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1762,6 +1808,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1790,6 +1837,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1818,6 +1866,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1870,6 +1919,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1954,6 +2004,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -1982,6 +2033,7 @@
       "availableToClaimUnits": 0,
       "protectedPendingUnits": 100,
       "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
       "provenance": [
         {
           "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
@@ -2277,5 +2329,5 @@
       }
     ]
   },
-  "hash": "94d2eed631a700450ba8b9946e243a1f37408c2124a901e49d003b146dd6a35a"
+  "hash": "0b7c7f48ee0d302390a300715d61af0bad057c5ca673c3d4f61a1b64d4adbff6"
 }

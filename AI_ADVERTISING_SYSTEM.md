@@ -31,11 +31,32 @@ participates. The record is explicitly marked:
 Claiming control requires identity, authority, conflict review, verification record, and wallet
 binding. Until then, rights allocations remain in content-specific unclaimed payable accounts.
 
-Organization campaign balances may run below zero against a visible, configurable Infinity credit
-line. The statement reports positive availability, debt, and remaining credit separately. Debt can
-be reduced through verified product purchases, product-specific Infinity coins, or activity tokens
-that a user explicitly directs to that organization. A collection robot may route no more than 100
-Infinity of a user's authorized activity per day and cannot silently take wallet funds.
+Each registered business account may collect up to **1,000 Infinity per calendar day** from the
+explicitly labeled `INFINITY_BUSINESS_ALLOWANCE` lane. The allowance robot may make one full
+collection or several partial collections, but the combined daily total cannot exceed 1,000. Unused
+balance accumulates in the business account instead of expiring.
+
+Business accounts are non-negative by default: contextual advertising stops before it can spend
+more than the available account balance. A separately configured and disclosed credit line remains
+possible, but it is not the normal path. Verified product purchases and product-specific Infinity
+coins can also credit the business. User activity tokens are not a business funding source; a
+person funds a business only through a recorded product purchase.
+
+The daily allowance is protocol issuance, not proof that an outside advertiser paid Infinity and
+not a promise of conversion into dollars. The event history preserves the distinction.
+
+## Collectible note value
+
+`collectible-value.js` keeps two concepts separate:
+
+- the note's fixed ledger `faceUnits`; and
+- market observations associated with signatures, video, audio, artwork, documents, products, and
+  other provenance attachments.
+
+A verified signature or original work can make a particular note desirable and buyers may price it
+far above its face amount. The software records attachments, digests, verification state, offers,
+appraisals, or completed sales. It does not manufacture a guaranteed USD price, and recording an
+observation never silently changes the ledger balance.
 
 ## Seven-worker system
 
@@ -143,7 +164,8 @@ idempotent event ID, active campaign, sufficient campaign budget, and sufficient
 npm run test:protocols
 ```
 
-The tests cover balanced funding and impression postings, one-Infinity-cent rights pools, split
+The tests cover balanced business-allowance, product funding and impression postings, collectible
+value separation, one-Infinity-cent rights pools, split
 claimants, provisional organizations, non-endorsement labels, contextual privacy, consent
 boundaries, frequency caps, duplicate events, hash verification, catalog provenance, card entity
 extraction, AI-worker boundaries, and zero viewer charge.

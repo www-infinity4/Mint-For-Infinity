@@ -37,7 +37,8 @@
 
   async function seedNetwork() {
     network = new InfinityAdvertisingNetwork({ mode: 'SIMULATION' });
-    await network.createOrganizationAccount({ id: 'company:context-demo', displayName: 'Example beverage company — provisional', claimStatus: 'UNCLAIMED', fundingSource: 'TREASURY_ISSUANCE', openingUnits: 100 * UNITS_PER_INFINITY, tags: ['beverage', 'culture'] });
+    await network.createOrganizationAccount({ id: 'company:context-demo', displayName: 'Example beverage company — provisional', claimStatus: 'UNCLAIMED', fundingSource: 'TREASURY_ISSUANCE', openingUnits: 0, tags: ['beverage', 'culture'] });
+    await network.collectBusinessDailyAllowance({ eventId: 'demo-allowance:2026-08-12', organizationId: 'company:context-demo', dayKey: '2026-08-12' });
     await network.registerContentToken({ id: 'content:cardone-art-demo', title: 'Cardone art card demonstration', kind: 'TRADING_CARD', tags: ['art', 'business'], evidenceState: 'DEMONSTRATION_ONLY', participants: [
       { id: 'company:production-demo', name: 'Production company — unclaimed', role: 'PRODUCTION_COMPANY', beneficiaryClass: 'COMPANY', shareBps: 0, claimStatus: 'UNCLAIMED' },
       { id: 'person:gary-cardone', name: 'Gary Cardone — unclaimed', role: 'FEATURED_SUBJECT', beneficiaryClass: 'PERSON', shareBps: 0, claimStatus: 'UNCLAIMED' },

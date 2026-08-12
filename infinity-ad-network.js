@@ -10,10 +10,11 @@
   const DEFAULT_IMPRESSION_COST_UNITS = 2_000;
   const PRODUCTION_COMPANY_RATE_UNITS = 1_000;
   const CREDITED_PERSON_RATE_UNITS = 100;
+  const BUSINESS_DAILY_ALLOWANCE_UNITS = 1_000 * UNITS_PER_INFINITY;
   const CLAIM_STATES = new Set(['UNCLAIMED', 'PENDING', 'VERIFIED', 'DISPUTED', 'DECLINED']);
   const FUNDING_SOURCES = new Set(['TREASURY_ISSUANCE', 'EXTERNAL_ADVERTISER']);
   const CAMPAIGN_STATES = new Set(['DRAFT', 'ACTIVE', 'PAUSED', 'EXHAUSTED', 'CLOSED']);
-  const ORGANIZATION_CREDIT_SOURCES = new Set(['PRODUCT_PURCHASE', 'USER_DIRECTED_ACTIVITY', 'PRODUCT_INFINITY_COIN']);
+  const ORGANIZATION_CREDIT_SOURCES = new Set(['PRODUCT_PURCHASE', 'PRODUCT_INFINITY_COIN']);
 
   function invariant(condition, message) {
     if (!condition) throw new Error(message);
@@ -126,10 +127,15 @@
         stewardship: claimStatus === 'VERIFIED' ? 'CLAIMANT_CONTROLLED' : 'SYSTEM_PROVISIONAL',
         endorsement: claimStatus === 'VERIFIED' ? 'NOT_RECORDED' : 'NOT_CLAIMED_OR_ENDORSED',
         tags: normalizeTags(input.tags),
-        allowNegative: input.allowNegative !== false,
-        creditLineUnits: integer(input.creditLineUnits ?? 100 * UNITS_PER_INFINITY, 'creditLineUnits'),
+        accountClass: String(input.accountClass || 'BUSINESS').trim().toUpperCase(),
+        dailyAllowanceUnits: integer(input.dailyAllowanceUnits ?? BUSINESS_DAILY_ALLOWANCE_UNITS, 'dailyAllowanceUnits'),
+        allowNegative: input.allowNegative === true,
+        creditLineUnits: integer(input.creditLineUnits ?? 0, 'creditLineUnits'),
       };
       invariant(organization.displayName, 'Organization display name is required.');
+      invariant(organization.accountClass === 'BUSINESS', 'Organization account class must be BUSINESS.');
+      invariant(organization.dailyAllowanceUnits >= 0, 'Daily business allowance cannot be negative.');
+      invariant(organization.allowNegative || organization.creditLineUnits === 0, 'A non-negative business account cannot have a credit line.');
       if (claimStatus === 'VERIFIED') invariant(organization.walletId && organization.verificationRecordId, 'Verified organization requires wallet and verification record.');
       this.organizations[input.id] = organization;
 
@@ -143,9 +149,31 @@
       return organization;
     }
 
-    userDirectedUsage(userId, dayKey) {
-      return this.events.filter(event => event.type === 'ORGANIZATION_ACCOUNT_CREDITED' && event.payload.sourceType === 'USER_DIRECTED_ACTIVITY' &&
-        event.payload.userId === userId && event.payload.dayKey === dayKey).reduce((sum, event) => sum + event.payload.amountUnits, 0);
+    dailyBusinessAllowanceUsage(organizationId, dayKey) {
+      return this.events.filter(event => event.type === 'BUSINESS_DAILY_ALLOWANCE_COLLECTED' &&
+        event.payload.organizationId === organizationId && event.payload.dayKey === dayKey)
+        .reduce((sum, event) => sum + event.payload.amountUnits, 0);
+    }
+
+    async collectBusinessDailyAllowance(input) {
+      invariant(input && typeof input.eventId === 'string' && input.eventId.trim(), 'Allowance event id is required.');
+      invariant(!this.processedFundingIds.has(input.eventId), 'Duplicate funding event.');
+      const organization = this.organizations[input.organizationId];
+      invariant(organization && organization.accountClass === 'BUSINESS', 'A registered business account is required.');
+      const dayKey = String(input.dayKey || '').trim();
+      invariant(/^\d{4}-\d{2}-\d{2}$/.test(dayKey), 'Business allowance requires a YYYY-MM-DD dayKey.');
+      const usedUnits = this.dailyBusinessAllowanceUsage(organization.id, dayKey);
+      const remainingUnits = organization.dailyAllowanceUnits - usedUnits;
+      const amountUnits = integer(input.amountUnits ?? remainingUnits, 'amountUnits');
+      invariant(amountUnits > 0 && amountUnits <= remainingUnits, 'Business allowance exceeds the 1,000 Infinity daily account limit.');
+      const payload = { eventId: input.eventId, organizationId: organization.id, dayKey, amountUnits,
+        collectorId: String(input.collectorId || 'robot:business-allowance'), sourceType: 'INFINITY_BUSINESS_ALLOWANCE' };
+      const event = await this.append('BUSINESS_DAILY_ALLOWANCE_COLLECTED', payload, [
+        posting('issuance:business-daily-allowance:' + dayKey, amountUnits, 0, 'Daily business operating allowance'),
+        posting('organization:' + organization.id + ':available', 0, amountUnits, 'Robot-collected business allowance'),
+      ], input.timestamp);
+      this.processedFundingIds.add(input.eventId);
+      return event;
     }
 
     async creditOrganization(input) {
@@ -162,19 +190,12 @@
         invariant(typeof input.orderId === 'string' && input.orderId.trim(), 'Product purchase requires orderId.');
         payload.orderId = input.orderId;
         payload.productTokenId = String(input.productTokenId || '').trim();
-      } else if (sourceType === 'PRODUCT_INFINITY_COIN') {
+      } else {
         invariant(typeof input.productTokenId === 'string' && input.productTokenId.trim(), 'Product coin credit requires productTokenId.');
         payload.productTokenId = input.productTokenId;
-      } else {
-        invariant(input.userAuthorization === true, 'User-directed activity requires explicit authorization.');
-        payload.userId = String(input.userId || '').trim();
-        payload.dayKey = String(input.dayKey || '').trim();
-        invariant(payload.userId && payload.dayKey, 'User-directed activity requires userId and dayKey.');
-        const dailyLimit = 100 * UNITS_PER_INFINITY;
-        invariant(this.userDirectedUsage(payload.userId, payload.dayKey) + amountUnits <= dailyLimit, 'User-directed activity exceeds the 100 Infinity daily limit.');
       }
       const sourceAccount = sourceType === 'PRODUCT_PURCHASE' ? 'clearing:verified-product-purchases' :
-        sourceType === 'PRODUCT_INFINITY_COIN' ? 'clearing:product-infinity-coins' : 'clearing:user-directed-activity';
+        'clearing:product-infinity-coins';
       const event = await this.append('ORGANIZATION_ACCOUNT_CREDITED', payload, [
         posting(sourceAccount, amountUnits, 0, sourceType),
         posting('organization:' + organization.id + ':available', 0, amountUnits, 'Organization balance recovery'),
@@ -376,6 +397,6 @@
     }
   }
 
-  return { InfinityAdvertisingNetwork, UNITS_PER_INFINITY, ONE_INFINITY_CENT, DEFAULT_IMPRESSION_COST_UNITS,
+  return { InfinityAdvertisingNetwork, UNITS_PER_INFINITY, ONE_INFINITY_CENT, BUSINESS_DAILY_ALLOWANCE_UNITS, DEFAULT_IMPRESSION_COST_UNITS,
     PRODUCTION_COMPANY_RATE_UNITS, CREDITED_PERSON_RATE_UNITS, sha256 };
 });

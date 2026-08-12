@@ -7,6 +7,7 @@
 
   const COMPANY_OPENING_UNITS = 1_000;
   const PERSON_OPENING_UNITS = 100;
+  const BUSINESS_DAILY_ALLOWANCE_UNITS = 10_000_000;
   const COMPANY_PATTERN = /COMPANY|STUDIO|NETWORK|DISTRIBUTOR|PUBLISHER|PRODUCTION|BRAND|TEAM|LEAGUE|LINKED_SOURCE|RIGHTS_HOLDER/;
 
   function sha256(value) {
@@ -38,6 +39,15 @@
         availableToClaimUnits: 0,
         protectedPendingUnits: amountUnits,
         endorsement: 'NOT_CLAIMED_OR_ENDORSED',
+        businessAllowancePolicy: classification === 'COMPANY' ? {
+          eligible: true,
+          dailyCapUnits: BUSINESS_DAILY_ALLOWANCE_UNITS,
+          collectionState: 'ROBOT_COLLECTIBLE_BY_DATED_EVENT',
+          unusedBalanceAccumulates: true,
+          negativeBalanceDefault: false,
+          customerFundingSources: ['PRODUCT_PURCHASE', 'PRODUCT_INFINITY_COIN'],
+          excludedFundingSources: ['USER_ACTIVITY_TRANSFER'],
+        } : null,
         provenance: claimant.provenance || [],
         releaseRequirements: ['identity', 'authority or credit evidence', 'conflict review', 'wallet binding'],
       };
@@ -58,5 +68,5 @@
     return { ...body, hash: await sha256(body) };
   }
 
-  return { buildOpeningAccounts, beneficiaryClass, COMPANY_OPENING_UNITS, PERSON_OPENING_UNITS };
+  return { buildOpeningAccounts, beneficiaryClass, COMPANY_OPENING_UNITS, PERSON_OPENING_UNITS, BUSINESS_DAILY_ALLOWANCE_UNITS };
 });

@@ -38,6 +38,7 @@ jobs:
           cp household-sweep.html dist/household-sweep.html
           cp household-sweep-page.js dist/household-sweep-page.js
           cp infinity-ad-network.js dist/infinity-ad-network.js
+          cp collectible-value.js dist/collectible-value.js
           cp ai-workforce.js dist/ai-workforce.js
           cp household-needs.js dist/household-needs.js
           cp economy-controls.js dist/economy-controls.js

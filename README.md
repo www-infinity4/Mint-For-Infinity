@@ -112,8 +112,14 @@ player, featured-person, and publisher accounts without duplicating repeated nam
 
 The default advertising example charges 0.20 Infinity per qualified impression, pays each credited
 production company 0.10 Infinity, pays each credited person 0.01 Infinity, and charges the viewer
-nothing. Organization accounts may use a visible negative credit line and recover through product
-purchases, product Infinity coins, and expressly user-directed activity tokens.
+nothing. Each business account can collect up to 1,000 Infinity per day from the labeled business
+allowance lane, retain unused positive balance, and receive customer funding through recorded
+product purchases or product Infinity coins. Accounts are non-negative by default, and user activity
+tokens are not transferred to advertisers.
+
+`collectible-value.js` records signatures, video, artwork, and other provenance attachments alongside
+non-binding market observations. Those records may support a collectible market price while keeping
+the note's face units separate and unchanged.
 
 Open [`household-sweep.html`](household-sweep.html) to record unfinished repairs and generate
 explainable, permission-controlled local service opportunities.

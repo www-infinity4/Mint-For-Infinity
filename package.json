@@ -12,7 +12,7 @@
     "scan:starquest": "node scripts/scan-starquest-catalog.js ../TV-Database/js/data.js catalogs/starquest-provenance.json",
     "scan:goudey": "node scripts/scan-goudey-catalog.js ../Goudey-Catalog/app.js catalogs/goudey-provenance.json",
     "build:opening-accounts": "node scripts/build-opening-accounts.js catalogs/starquest-provenance.json catalogs/starquest-opening-accounts.json",
-    "test:protocols": "node royalty-ledger.test.js && node infinity-ad-network.test.js && node ai-workforce.test.js && node catalog-provenance.test.js && node household-needs.test.js && node catalog-bank-media.test.js"
+    "test:protocols": "node royalty-ledger.test.js && node infinity-ad-network.test.js && node collectible-value.test.js && node ai-workforce.test.js && node catalog-provenance.test.js && node household-needs.test.js && node catalog-bank-media.test.js"
   },
   "repository": {
     "type": "git",
