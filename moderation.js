@@ -162,6 +162,26 @@
     }
   }
 
+  async function scanTextFile(asset, fetchImpl) {
+    let content = "";
+    try {
+      const file = asset.file || asset;
+      if (file && typeof file.text === "function") content = await file.text();
+    } catch (_) {
+      content = "";
+    }
+    if (!content) {
+      return moderationRecord(asset, "REVIEW_REQUIRED", {
+        digest: await digestFile(asset.file || asset),
+        reasons: ["Text attachment could not be read for local content review."],
+        role: "TEXT_SAFETY"
+      });
+    }
+    const record = await scanText({ ...asset, text: content.slice(0, 20000) }, fetchImpl);
+    record.digest = await digestFile(asset.file || asset);
+    return record;
+  }
+
   async function scanUnsupportedMedia(asset) {
     return moderationRecord(asset, "REVIEW_REQUIRED", {
       digest: await digestFile(asset.file || asset),
@@ -236,13 +256,16 @@
         provenance: file.provenance || "USER_SUPPLIED"
       };
       if (/^image\//i.test(asset.type)) records.push(await scanImage(asset, fetchImpl));
-      else if (/^(?:audio|video)\//i.test(asset.type) || asset.type === "application/pdf") {
+      else if (/^text\//i.test(asset.type) || /\.(?:md|txt|csv|json)$/i.test(asset.name)) {
+        records.push(await scanTextFile(asset, fetchImpl));
+      } else if (/^(?:audio|video)\//i.test(asset.type) || asset.type === "application/pdf") {
         records.push(await scanUnsupportedMedia(asset));
       } else {
-        records.push(await scanText({
-          ...asset,
-          text: "Attachment metadata: " + asset.name + " [" + (asset.type || "unknown") + "]"
-        }, fetchImpl));
+        records.push(moderationRecord(asset, "REVIEW_REQUIRED", {
+          reasons: ["Attachment content could not be classified by an available local role."],
+          role: "FILE_SAFETY",
+          scope: "envelope-only"
+        }));
       }
     }
 
