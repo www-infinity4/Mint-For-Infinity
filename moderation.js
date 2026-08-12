@@ -6,12 +6,20 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function (root) {
   "use strict";
 
-  const ENDPOINT = "http://127.0.0.1:8080/v1";
+  const RUNTIME = "http://127.0.0.1:11435";
+  const POLICY_VERSION = "infinity-publication-v1";
   const MAX_FILE_BYTES = 25 * 1024 * 1024;
   const MAX_TOTAL_BYTES = 50 * 1024 * 1024;
-  const IMAGE_AI_BYTES = 4 * 1024 * 1024;
+  const IMAGE_SCAN_BYTES = 4 * 1024 * 1024;
   const BLOCKED_EXTENSIONS = /\.(?:apk|app|bat|cmd|com|dll|dmg|exe|hta|html?|jar|js|msi|ps1|scr|sh|svg|vbs)$/i;
   const ALLOWED_TYPES = /^(?:image|audio|video|text)\//i;
+
+  function normalizeDecision(value) {
+    const decision = String(value || "").toUpperCase();
+    return ["APPROVED", "BLOCKED", "REVIEW_REQUIRED"].includes(decision)
+      ? decision
+      : "REVIEW_REQUIRED";
+  }
 
   function deterministicCheck(text, files) {
     const cleanText = String(text || "").trim();
@@ -34,41 +42,45 @@
 
     return {
       allowed: reasons.length === 0,
-      decision: reasons.length ? "block" : "allow",
-      source: "local-rules",
+      decision: reasons.length ? "BLOCKED" : "APPROVED",
+      source: "local-envelope-rules",
+      policyVersion: POLICY_VERSION,
       reasons
     };
   }
 
-  function parseModelDecision(value) {
-    const raw = String(value || "").trim();
-    let parsed;
-    try {
-      parsed = JSON.parse(raw);
-    } catch (_) {
-      const match = raw.match(/\{[\s\S]*\}/);
-      if (!match) return { decision: "review", reason: "The local model returned an unreadable decision." };
-      try { parsed = JSON.parse(match[0]); }
-      catch (_) { return { decision: "review", reason: "The local model returned invalid JSON." }; }
-    }
-    const decision = ["allow", "review", "block"].includes(parsed.decision) ? parsed.decision : "review";
-    return {
-      decision,
-      reason: String(parsed.reason || "No reason supplied."),
-      categories: Array.isArray(parsed.categories) ? parsed.categories.map(String).slice(0, 8) : []
-    };
+  function withTimeout(milliseconds) {
+    if (typeof AbortController === "undefined") return { signal: undefined, cancel() {} };
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), milliseconds);
+    return { signal: controller.signal, cancel() { clearTimeout(timer); } };
   }
 
-  async function discoverModel(fetchImpl) {
-    const response = await fetchImpl(ENDPOINT + "/models", { signal: AbortSignal.timeout(2500) });
-    if (!response.ok) throw new Error("Local model list returned " + response.status);
-    const payload = await response.json();
-    const ids = Array.isArray(payload.data) ? payload.data.map(item => String(item.id || "")).filter(Boolean) : [];
-    return ids.find(id => /shieldgemma/i.test(id)) || ids.find(id => /gemma/i.test(id)) || ids[0] || "local-model";
+  async function runtimeRequest(path, body, fetchImpl) {
+    const timeout = withTimeout(20000);
+    try {
+      const response = await fetchImpl(RUNTIME + path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        signal: timeout.signal
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok && !payload.decision) {
+        throw new Error(payload.error || "Runtime returned " + response.status);
+      }
+      return payload;
+    } finally {
+      timeout.cancel();
+    }
   }
 
   function readImage(file) {
-    if (!file || !/^image\//i.test(file.type || "") || file.size > IMAGE_AI_BYTES) return Promise.resolve(null);
+    if (!file || !/^image\//i.test(file.type || "") || Number(file.size || 0) > IMAGE_SCAN_BYTES) {
+      return Promise.resolve(null);
+    }
+    if (typeof file.dataUrl === "string") return Promise.resolve(file.dataUrl);
+    if (typeof FileReader === "undefined") return Promise.resolve(null);
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = () => resolve(typeof reader.result === "string" ? reader.result : null);
@@ -77,80 +89,297 @@
     });
   }
 
-  async function modelCheck(text, files, fetchImpl) {
-    const model = await discoverModel(fetchImpl);
-    const image = await readImage(Array.from(files || []).find(file => /^image\//i.test(file.type || "")));
-    const prompt = [
-      "You are the local safety classifier for Infinity Mint.",
-      "Return JSON only: {\"decision\":\"allow|review|block\",\"reason\":\"short reason\",\"categories\":[]}.",
-      "Block only clear sexual content involving minors, credible targeted threats, instructions intended to cause serious harm, or malicious executable content.",
-      "Use review for ambiguous high-risk material. Allow fiction, news, criticism, personal beliefs, scientific discussion, and ordinary creative work unless they clearly cross a blocked category.",
-      "Text to classify:",
-      String(text || "").slice(0, 12000) || "(no text)",
-      "Uploaded files:",
-      Array.from(files || []).map(file => file.name + " [" + (file.type || "unknown") + ", " + file.size + " bytes]").join("\n") || "(none)"
-    ].join("\n");
-    const content = image
-      ? [{ type: "text", text: prompt }, { type: "image_url", image_url: { url: image } }]
-      : prompt;
-    const response = await fetchImpl(ENDPOINT + "/chat/completions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ model, temperature: 0, max_tokens: 220, messages: [{ role: "user", content }] }),
-      signal: AbortSignal.timeout(15000)
-    });
-    if (!response.ok) throw new Error("Local moderation returned " + response.status);
-    const payload = await response.json();
-    const result = parseModelDecision(payload.choices && payload.choices[0] && payload.choices[0].message && payload.choices[0].message.content);
-    return { ...result, allowed: result.decision === "allow", source: /shieldgemma/i.test(model) ? "shieldgemma-local" : "gemma-local", model };
-  }
-
-  async function moderate(text, files, fetchImpl) {
-    const local = deterministicCheck(text, files);
-    if (!local.allowed) return local;
+  async function digestFile(file) {
+    if (!file || typeof file.arrayBuffer !== "function" || !root.crypto || !root.crypto.subtle) return null;
     try {
-      return await modelCheck(text, files, fetchImpl || fetch);
-    } catch (error) {
-      return {
-        allowed: true,
-        decision: "allow",
-        source: "local-rules-ai-offline",
-        reasons: [],
-        warning: "Local Gemma moderation is offline; file and size safety checks passed.",
-        error: String(error && error.message || error)
-      };
+      const bytes = await file.arrayBuffer();
+      const digest = await root.crypto.subtle.digest("SHA-256", bytes);
+      return Array.from(new Uint8Array(digest)).map(value => value.toString(16).padStart(2, "0")).join("");
+    } catch (_) {
+      return null;
     }
   }
 
+  function moderationRecord(asset, decision, details) {
+    return {
+      assetId: String(asset.id || asset.name || "asset"),
+      digest: details.digest || null,
+      mediaType: String(asset.type || asset.kind || "text/plain"),
+      decision: normalizeDecision(decision),
+      policyVersion: POLICY_VERSION,
+      scannedAt: new Date().toISOString(),
+      reasonCodes: Array.isArray(details.reasons) ? details.reasons.map(String).slice(0, 12) : [],
+      scannerModel: details.model || null,
+      scannerRole: details.role || null,
+      provenance: asset.provenance || "USER_SUPPLIED",
+      scope: details.scope || "full-content"
+    };
+  }
+
+  async function scanText(asset, fetchImpl) {
+    try {
+      const response = await runtimeRequest("/v1/moderate/text", { input: asset.text }, fetchImpl);
+      return moderationRecord(asset, response.decision, {
+        reasons: response.reasons,
+        model: response.model,
+        role: response.role || "TEXT_SAFETY"
+      });
+    } catch (error) {
+      return moderationRecord(asset, "REVIEW_REQUIRED", {
+        reasons: ["Local text safety role unavailable: " + String(error && error.message || error)],
+        role: "TEXT_SAFETY"
+      });
+    }
+  }
+
+  async function scanImage(asset, fetchImpl) {
+    const dataUrl = asset.dataUrl || await readImage(asset.file || asset);
+    const digest = await digestFile(asset.file || asset);
+    if (!dataUrl) {
+      return moderationRecord(asset, "REVIEW_REQUIRED", {
+        digest,
+        reasons: ["Image could not be prepared for local ShieldGemma review."],
+        role: "IMAGE_SAFETY"
+      });
+    }
+    try {
+      const response = await runtimeRequest("/v1/moderate/image", {
+        image: dataUrl,
+        prompt: "Review this Infinity Mint asset for public token publication."
+      }, fetchImpl);
+      return moderationRecord(asset, response.decision, {
+        digest,
+        reasons: response.reasons,
+        model: response.model,
+        role: response.role || "IMAGE_SAFETY"
+      });
+    } catch (error) {
+      return moderationRecord(asset, "REVIEW_REQUIRED", {
+        digest,
+        reasons: ["Local image safety role unavailable: " + String(error && error.message || error)],
+        role: "IMAGE_SAFETY"
+      });
+    }
+  }
+
+  async function scanTextFile(asset, fetchImpl) {
+    let content = "";
+    try {
+      const file = asset.file || asset;
+      if (file && typeof file.text === "function") content = await file.text();
+    } catch (_) {
+      content = "";
+    }
+    if (!content) {
+      return moderationRecord(asset, "REVIEW_REQUIRED", {
+        digest: await digestFile(asset.file || asset),
+        reasons: ["Text attachment could not be read for local content review."],
+        role: "TEXT_SAFETY"
+      });
+    }
+    const record = await scanText({ ...asset, text: content.slice(0, 20000) }, fetchImpl);
+    record.digest = await digestFile(asset.file || asset);
+    return record;
+  }
+
+  async function scanUnsupportedMedia(asset) {
+    return moderationRecord(asset, "REVIEW_REQUIRED", {
+      digest: await digestFile(asset.file || asset),
+      reasons: ["This media type needs a content-capable local scanner before public minting."],
+      role: "MEDIA_SAFETY",
+      scope: "envelope-only"
+    });
+  }
+
+  function normalizePackage(input, legacyFiles) {
+    if (typeof input === "string") {
+      return {
+        text: input,
+        files: Array.from(legacyFiles || []),
+        images: [],
+        provenance: []
+      };
+    }
+    const value = input && typeof input === "object" ? input : {};
+    return {
+      text: String(value.text || ""),
+      files: Array.from(value.files || []),
+      images: Array.from(value.images || []),
+      provenance: Array.from(value.provenance || [])
+    };
+  }
+
+  async function moderate(input, filesOrFetch, maybeFetch) {
+    const legacy = typeof input === "string";
+    const packageInput = normalizePackage(input, legacy ? filesOrFetch : null);
+    const fetchImpl = (legacy ? maybeFetch : filesOrFetch) || root.fetch;
+    if (typeof fetchImpl !== "function") {
+      return {
+        allowed: false,
+        decision: "REVIEW_REQUIRED",
+        source: "infinity-ai-runtime-offline",
+        policyVersion: POLICY_VERSION,
+        records: [],
+        reasons: ["The shared local AI runtime is unavailable. Draft remains private."]
+      };
+    }
+
+    const deterministic = deterministicCheck(packageInput.text, packageInput.files);
+    if (!deterministic.allowed) {
+      return {
+        ...deterministic,
+        allowed: false,
+        records: packageInput.files.map((file, index) => moderationRecord(
+          { id: "file-" + index, ...file },
+          "BLOCKED",
+          { reasons: deterministic.reasons, scope: "file-envelope" }
+        ))
+      };
+    }
+
+    const records = [];
+    records.push(await scanText({
+      id: "package-text",
+      type: "text/plain",
+      text: packageInput.text || "(blank note)",
+      provenance: "PACKAGE_MANIFEST"
+    }, fetchImpl));
+
+    for (let index = 0; index < packageInput.files.length; index += 1) {
+      const file = packageInput.files[index];
+      const asset = {
+        id: file.id || "file-" + index,
+        name: file.name || "attachment-" + index,
+        type: file.type || "",
+        size: Number(file.size || 0),
+        file,
+        provenance: file.provenance || "USER_SUPPLIED"
+      };
+      if (/^image\//i.test(asset.type)) records.push(await scanImage(asset, fetchImpl));
+      else if (/^text\//i.test(asset.type) || /\.(?:md|txt|csv|json)$/i.test(asset.name)) {
+        records.push(await scanTextFile(asset, fetchImpl));
+      } else if (/^(?:audio|video)\//i.test(asset.type) || asset.type === "application/pdf") {
+        records.push(await scanUnsupportedMedia(asset));
+      } else {
+        records.push(moderationRecord(asset, "REVIEW_REQUIRED", {
+          reasons: ["Attachment content could not be classified by an available local role."],
+          role: "FILE_SAFETY",
+          scope: "envelope-only"
+        }));
+      }
+    }
+
+    for (let index = 0; index < packageInput.images.length; index += 1) {
+      records.push(await scanImage({
+        id: packageInput.images[index].id || "generated-image-" + index,
+        type: "image/png",
+        provenance: packageInput.images[index].provenance || "USER_CREATED",
+        dataUrl: packageInput.images[index].dataUrl
+      }, fetchImpl));
+    }
+
+    const prePackageDecision = records.some(record => record.decision === "BLOCKED")
+      ? "BLOCKED"
+      : records.some(record => record.decision === "REVIEW_REQUIRED")
+        ? "REVIEW_REQUIRED"
+        : "APPROVED";
+
+    let packageRecord;
+    if (prePackageDecision === "APPROVED") {
+      packageRecord = await scanText({
+        id: "assembled-package",
+        type: "application/vnd.infinity.note+json",
+        provenance: "PACKAGE_MANIFEST",
+        text: JSON.stringify({
+          text: packageInput.text,
+          assets: records.map(record => ({
+            assetId: record.assetId,
+            mediaType: record.mediaType,
+            provenance: record.provenance,
+            decision: record.decision,
+            digest: record.digest
+          }))
+        })
+      }, fetchImpl);
+      records.push(packageRecord);
+    }
+
+    const decision = records.some(record => record.decision === "BLOCKED")
+      ? "BLOCKED"
+      : records.some(record => record.decision === "REVIEW_REQUIRED")
+        ? "REVIEW_REQUIRED"
+        : "APPROVED";
+
+    return {
+      allowed: decision === "APPROVED",
+      decision,
+      source: "infinity-ai-runtime",
+      policyVersion: POLICY_VERSION,
+      records,
+      reasons: records
+        .filter(record => record.decision !== "APPROVED")
+        .flatMap(record => record.reasonCodes)
+        .slice(0, 12)
+    };
+  }
+
   function collectFiles(doc) {
-    return ["imageFile", "audioFile", "videoFile", "docFile"]
+    const inputs = ["imageFile", "audioFile", "videoFile", "docFile"]
       .flatMap(id => Array.from((doc.getElementById(id) || {}).files || []));
+    const draft = root.InfinityMintDraft;
+    if (!draft || typeof draft.getFiles !== "function") return inputs;
+    const seen = new Set(inputs);
+    return inputs.concat(draft.getFiles().filter(file => !seen.has(file)));
+  }
+
+  function collectPackage(doc) {
+    const draft = root.InfinityMintDraft;
+    if (draft && typeof draft.getModerationPackage === "function") {
+      const value = draft.getModerationPackage();
+      return { ...value, files: collectFiles(doc) };
+    }
+    const intent = doc.getElementById("intent");
+    return { text: intent ? intent.value : "", files: collectFiles(doc), images: [] };
   }
 
   function install(doc) {
     const button = doc.getElementById("mintBtn");
     const status = doc.getElementById("moderationStatus");
-    const intent = doc.getElementById("intent");
     if (!button || !status || button.dataset.moderationInstalled === "true") return false;
     button.dataset.moderationInstalled = "true";
     const mint = button.onclick;
     button.onclick = async function (event) {
       event.preventDefault();
       button.disabled = true;
-      status.textContent = "Checking note with local safety rules and Gemma…";
+      delete root.__infinityMintModerationResult;
+      if (root.InfinityMintDraft && root.InfinityMintDraft.setState) root.InfinityMintDraft.setState("SCANNING");
+      status.textContent = "Checking every package component with the shared local Gemma safety gateway…";
       status.dataset.state = "checking";
-      const result = await moderate(intent ? intent.value : "", collectFiles(doc));
-      status.dataset.state = result.allowed ? "allowed" : "blocked";
-      status.textContent = result.allowed
-        ? (result.warning || "Approved by " + result.source + (result.model ? " (" + result.model + ")" : "") + ".")
-        : "Mint paused: " + ((result.reasons && result.reasons.join(" ")) || result.reason || "Local moderation requires review.");
+      const result = await moderate(collectPackage(doc));
+      status.dataset.state = result.decision.toLowerCase();
+      if (result.allowed) {
+        status.textContent = "APPROVED · package and assets passed local text/image safety roles.";
+      } else {
+        status.textContent = result.decision + " · " + (result.reasons.join(" ") || "Draft remains private until local screening succeeds.");
+      }
       button.disabled = false;
-      if (!result.allowed) return;
+      if (!result.allowed) {
+        if (root.InfinityMintDraft && root.InfinityMintDraft.setState) root.InfinityMintDraft.setState(result.decision);
+        return;
+      }
       root.__infinityMintModerationResult = { ...result, checkedAt: new Date().toISOString() };
+      if (root.InfinityMintDraft && root.InfinityMintDraft.setState) root.InfinityMintDraft.setState("MINTABLE");
       if (typeof mint === "function") await mint.call(button, event);
     };
     return true;
   }
 
-  return { deterministicCheck, parseModelDecision, moderate, install };
+  return {
+    POLICY_VERSION,
+    deterministicCheck,
+    normalizeDecision,
+    moderate,
+    collectPackage,
+    install
+  };
 });
