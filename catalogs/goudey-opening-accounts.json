@@ -1,0 +1,2333 @@
+{
+  "schema": "infinity/catalog-opening-accounts/v1",
+  "createdAt": "2026-08-12T22:41:00.000Z",
+  "sourceManifest": {
+    "repository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+    "path": "app.js",
+    "ref": "main"
+  },
+  "sourceScope": "GOUDEY_CARD_CATALOG",
+  "evidenceClass": "CATALOG_DISCOVERY_NOT_AI_WATCH_RECEIPT",
+  "rates": {
+    "companyUnits": 1000,
+    "personUnits": 100
+  },
+  "summary": {
+    "accountsCreated": 39,
+    "companyAccounts": 1,
+    "personAccounts": 38,
+    "totalOpeningUnits": 4800
+  },
+  "accounts": [
+    {
+      "id": "provisional:claimant:card-subject:barber-dime-photo-front",
+      "claimantId": "claimant:card-subject:barber-dime-photo-front",
+      "displayName": "Barber Dime — Photo Front",
+      "proposedRole": "CARD_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[0].player",
+          "observedValue": "Barber Dime — Photo Front",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:publisher:goudey-tradition-trading-card-company-llc",
+      "claimantId": "claimant:publisher:goudey-tradition-trading-card-company-llc",
+      "displayName": "Goudey Tradition Trading Card Company LLC",
+      "proposedRole": "PUBLISHER",
+      "beneficiaryClass": "COMPANY",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 1000,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 1000,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": {
+        "eligible": true,
+        "dailyCapUnits": 10000000,
+        "collectionState": "ROBOT_COLLECTIBLE_BY_DATED_EVENT",
+        "unusedBalanceAccumulates": true,
+        "negativeBalanceDefault": false,
+        "customerFundingSources": [
+          "PRODUCT_PURCHASE",
+          "PRODUCT_INFINITY_COIN"
+        ],
+        "excludedFundingSources": [
+          "USER_ACTIVITY_TRANSFER"
+        ]
+      },
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[0]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[1]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[2]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[3]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[4]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[5]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[6]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[7]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[8]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[9]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[10]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[11]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[12]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[13]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[14]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[15]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[16]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[17]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[18]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[19]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[20]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[21]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[22]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[23]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[24]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[25]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[26]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[27]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[28]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[29]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[30]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[31]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[32]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[33]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[34]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[35]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[36]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[37]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[38]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[39]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[40]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[41]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[42]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[43]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[44]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[45]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[46]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[47]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[48]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[49]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[50]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[51]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[52]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[53]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[54]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[55]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[56]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[57]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[58]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[59]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[60]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[61]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[62]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[63]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[64]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[65]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[66]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[67]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[68]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[69]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[70]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[71]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[72]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[73]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[74]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[75]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[76]",
+          "observedValue": "Repository catalog publisher",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:card-subject:barber-dime-photo-back",
+      "claimantId": "claimant:card-subject:barber-dime-photo-back",
+      "displayName": "Barber Dime — Photo Back",
+      "proposedRole": "CARD_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[1].player",
+          "observedValue": "Barber Dime — Photo Back",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:card-subject:barber-dime-xf-au-front",
+      "claimantId": "claimant:card-subject:barber-dime-xf-au-front",
+      "displayName": "Barber Dime XF/AU — Front",
+      "proposedRole": "CARD_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[2].player",
+          "observedValue": "Barber Dime XF/AU — Front",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:card-subject:barber-dime-xf-au-back",
+      "claimantId": "claimant:card-subject:barber-dime-xf-au-back",
+      "displayName": "Barber Dime XF/AU — Back",
+      "proposedRole": "CARD_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[3].player",
+          "observedValue": "Barber Dime XF/AU — Back",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:card-subject:pk1-39-cent-key-coin-composite",
+      "claimantId": "claimant:card-subject:pk1-39-cent-key-coin-composite",
+      "displayName": "PK1 39 Cent Key Coin Composite",
+      "proposedRole": "CARD_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[4].player",
+          "observedValue": "PK1 39 Cent Key Coin Composite",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:card-subject:bmh-young-guns-photo-front",
+      "claimantId": "claimant:card-subject:bmh-young-guns-photo-front",
+      "displayName": "BMH Young Guns — Photo Front",
+      "proposedRole": "CARD_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[5].player",
+          "observedValue": "BMH Young Guns — Photo Front",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:mitch-keller",
+      "claimantId": "claimant:player:mitch-keller",
+      "displayName": "Mitch Keller",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[6].player",
+          "observedValue": "Mitch Keller",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[22].player",
+          "observedValue": "Mitch Keller",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[23].player",
+          "observedValue": "Mitch Keller",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:chase-burns",
+      "claimantId": "claimant:player:chase-burns",
+      "displayName": "Chase Burns",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[7].player",
+          "observedValue": "Chase Burns",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[8].player",
+          "observedValue": "Chase Burns",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[9].player",
+          "observedValue": "Chase Burns",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:byron-buxton",
+      "claimantId": "claimant:player:byron-buxton",
+      "displayName": "Byron Buxton",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[10].player",
+          "observedValue": "Byron Buxton",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:michael-busch",
+      "claimantId": "claimant:player:michael-busch",
+      "displayName": "Michael Busch",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[11].player",
+          "observedValue": "Michael Busch",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:daylen-lile",
+      "claimantId": "claimant:player:daylen-lile",
+      "displayName": "Daylen Lile",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[12].player",
+          "observedValue": "Daylen Lile",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:mike-trout",
+      "claimantId": "claimant:player:mike-trout",
+      "displayName": "Mike Trout",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[13].player",
+          "observedValue": "Mike Trout",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[14].player",
+          "observedValue": "Mike Trout",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:nolan-arenado",
+      "claimantId": "claimant:player:nolan-arenado",
+      "displayName": "Nolan Arenado",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[15].player",
+          "observedValue": "Nolan Arenado",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:alex-rodriguez",
+      "claimantId": "claimant:player:alex-rodriguez",
+      "displayName": "Alex Rodriguez",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[16].player",
+          "observedValue": "Alex Rodriguez",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:justin-steele",
+      "claimantId": "claimant:player:justin-steele",
+      "displayName": "Justin Steele",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[17].player",
+          "observedValue": "Justin Steele",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:ben-brown",
+      "claimantId": "claimant:player:ben-brown",
+      "displayName": "Ben Brown",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[18].player",
+          "observedValue": "Ben Brown",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[19].player",
+          "observedValue": "Ben Brown",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:pete-crow-armstrong",
+      "claimantId": "claimant:player:pete-crow-armstrong",
+      "displayName": "Pete Crow-Armstrong",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[20].player",
+          "observedValue": "Pete Crow-Armstrong",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[21].player",
+          "observedValue": "Pete Crow-Armstrong",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:ryne-sandberg",
+      "claimantId": "claimant:player:ryne-sandberg",
+      "displayName": "Ryne Sandberg",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[24].player",
+          "observedValue": "Ryne Sandberg",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[25].player",
+          "observedValue": "Ryne Sandberg",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:bob-gibson",
+      "claimantId": "claimant:player:bob-gibson",
+      "displayName": "Bob Gibson",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[26].player",
+          "observedValue": "Bob Gibson",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[27].player",
+          "observedValue": "Bob Gibson",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[28].player",
+          "observedValue": "Bob Gibson",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[29].player",
+          "observedValue": "Bob Gibson",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[30].player",
+          "observedValue": "Bob Gibson",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:rollie-fingers",
+      "claimantId": "claimant:player:rollie-fingers",
+      "displayName": "Rollie Fingers",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[31].player",
+          "observedValue": "Rollie Fingers",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[32].player",
+          "observedValue": "Rollie Fingers",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:nolan-ryan",
+      "claimantId": "claimant:player:nolan-ryan",
+      "displayName": "Nolan Ryan",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[33].player",
+          "observedValue": "Nolan Ryan",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:randy-johnson-nolan-ryan",
+      "claimantId": "claimant:player:randy-johnson-nolan-ryan",
+      "displayName": "Randy Johnson / Nolan Ryan",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[34].player",
+          "observedValue": "Randy Johnson / Nolan Ryan",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:michael-jordan",
+      "claimantId": "claimant:player:michael-jordan",
+      "displayName": "Michael Jordan",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[35].player",
+          "observedValue": "Michael Jordan",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[36].player",
+          "observedValue": "Michael Jordan",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[37].player",
+          "observedValue": "Michael Jordan",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:goudey-tradition",
+      "claimantId": "claimant:player:goudey-tradition",
+      "displayName": "Goudey Tradition",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[38].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[39].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[40].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[41].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[42].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[43].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[44].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[55].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[56].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[57].player",
+          "observedValue": "Goudey Tradition",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:featured-subject:vince-neil-tommy-lee",
+      "claimantId": "claimant:featured-subject:vince-neil-tommy-lee",
+      "displayName": "Vince Neil & Tommy Lee",
+      "proposedRole": "FEATURED_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[45].player",
+          "observedValue": "Vince Neil & Tommy Lee",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:featured-subject:pete-hegseth",
+      "claimantId": "claimant:featured-subject:pete-hegseth",
+      "displayName": "Pete Hegseth",
+      "proposedRole": "FEATURED_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[46].player",
+          "observedValue": "Pete Hegseth",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:featured-subject:lionel-richie",
+      "claimantId": "claimant:featured-subject:lionel-richie",
+      "displayName": "Lionel Richie",
+      "proposedRole": "FEATURED_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[47].player",
+          "observedValue": "Lionel Richie",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:featured-subject:walt-disney-classics",
+      "claimantId": "claimant:featured-subject:walt-disney-classics",
+      "displayName": "Walt Disney Classics",
+      "proposedRole": "FEATURED_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[48].player",
+          "observedValue": "Walt Disney Classics",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:card-subject:pepsi-infinity",
+      "claimantId": "claimant:card-subject:pepsi-infinity",
+      "displayName": "Pepsi Infinity",
+      "proposedRole": "CARD_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[49].player",
+          "observedValue": "Pepsi Infinity",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:card-subject:gpu-cuda",
+      "claimantId": "claimant:card-subject:gpu-cuda",
+      "displayName": "GPU / CUDA",
+      "proposedRole": "CARD_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[50].player",
+          "observedValue": "GPU / CUDA",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:card-subject:gpu-architecture",
+      "claimantId": "claimant:card-subject:gpu-architecture",
+      "displayName": "GPU Architecture",
+      "proposedRole": "CARD_SUBJECT",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[51].player",
+          "observedValue": "GPU Architecture",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:ken-griffey-jr-hank-aaron",
+      "claimantId": "claimant:player:ken-griffey-jr-hank-aaron",
+      "displayName": "Ken Griffey Jr. / Hank Aaron",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[52].player",
+          "observedValue": "Ken Griffey Jr. / Hank Aaron",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[53].player",
+          "observedValue": "Ken Griffey Jr. / Hank Aaron",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:ken-griffey-jr",
+      "claimantId": "claimant:player:ken-griffey-jr",
+      "displayName": "Ken Griffey Jr.",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[54].player",
+          "observedValue": "Ken Griffey Jr.",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:chris-sale",
+      "claimantId": "claimant:player:chris-sale",
+      "displayName": "Chris Sale",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[58].player",
+          "observedValue": "Chris Sale",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:ozzie-albies",
+      "claimantId": "claimant:player:ozzie-albies",
+      "displayName": "Ozzie Albies",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[59].player",
+          "observedValue": "Ozzie Albies",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[60].player",
+          "observedValue": "Ozzie Albies",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[61].player",
+          "observedValue": "Ozzie Albies",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[62].player",
+          "observedValue": "Ozzie Albies",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:ronald-acun-a-jr",
+      "claimantId": "claimant:player:ronald-acun-a-jr",
+      "displayName": "Ronald Acuña Jr.",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[63].player",
+          "observedValue": "Ronald Acuña Jr.",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[64].player",
+          "observedValue": "Ronald Acuña Jr.",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[65].player",
+          "observedValue": "Ronald Acuña Jr.",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[66].player",
+          "observedValue": "Ronald Acuña Jr.",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[68].player",
+          "observedValue": "Ronald Acuña Jr.",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[69].player",
+          "observedValue": "Ronald Acuña Jr.",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[70].player",
+          "observedValue": "Ronald Acuña Jr.",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[71].player",
+          "observedValue": "Ronald Acuña Jr.",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:ronald-acun-a-jr-agusti-n-rami-rez",
+      "claimantId": "claimant:player:ronald-acun-a-jr-agusti-n-rami-rez",
+      "displayName": "Ronald Acuña Jr. / Agustín Ramírez",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[67].player",
+          "observedValue": "Ronald Acuña Jr. / Agustín Ramírez",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    },
+    {
+      "id": "provisional:claimant:player:paul-skenes",
+      "claimantId": "claimant:player:paul-skenes",
+      "displayName": "Paul Skenes",
+      "proposedRole": "PLAYER",
+      "beneficiaryClass": "PERSON",
+      "claimStatus": "UNCLAIMED",
+      "openingUnits": 100,
+      "availableToClaimUnits": 0,
+      "protectedPendingUnits": 100,
+      "endorsement": "NOT_CLAIMED_OR_ENDORSED",
+      "businessAllowancePolicy": null,
+      "provenance": [
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[72].player",
+          "observedValue": "Paul Skenes",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[73].player",
+          "observedValue": "Paul Skenes",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[74].player",
+          "observedValue": "Paul Skenes",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[75].player",
+          "observedValue": "Paul Skenes",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        },
+        {
+          "sourceRepository": "www-infinity4/Goudey-Tradition-Trading-Card-Company-LLC",
+          "sourcePath": "app.js",
+          "sourceRef": "main",
+          "fieldPath": "cards[76].player",
+          "observedValue": "Paul Skenes",
+          "evidenceClass": "OBSERVED_REPOSITORY_METADATA"
+        }
+      ],
+      "releaseRequirements": [
+        "identity",
+        "authority or credit evidence",
+        "conflict review",
+        "wallet binding"
+      ]
+    }
+  ],
+  "event": {
+    "type": "CATALOG_DISCOVERY_OPENING_CREDITS",
+    "postings": [
+      {
+        "accountId": "issuance:catalog-discovery-opening-credit",
+        "debitUnits": 4800,
+        "creditUnits": 0,
+        "memo": "Explicit treasury source for opening credits"
+      },
+      {
+        "accountId": "provisional:claimant:card-subject:barber-dime-photo-front",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:publisher:goudey-tradition-trading-card-company-llc",
+        "debitUnits": 0,
+        "creditUnits": 1000,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:card-subject:barber-dime-photo-back",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:card-subject:barber-dime-xf-au-front",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:card-subject:barber-dime-xf-au-back",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:card-subject:pk1-39-cent-key-coin-composite",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:card-subject:bmh-young-guns-photo-front",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:mitch-keller",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:chase-burns",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:byron-buxton",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:michael-busch",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:daylen-lile",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:mike-trout",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:nolan-arenado",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:alex-rodriguez",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:justin-steele",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:ben-brown",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:pete-crow-armstrong",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:ryne-sandberg",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:bob-gibson",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:rollie-fingers",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:nolan-ryan",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:randy-johnson-nolan-ryan",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:michael-jordan",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:goudey-tradition",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:featured-subject:vince-neil-tommy-lee",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:featured-subject:pete-hegseth",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:featured-subject:lionel-richie",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:featured-subject:walt-disney-classics",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:card-subject:pepsi-infinity",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:card-subject:gpu-cuda",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:card-subject:gpu-architecture",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:ken-griffey-jr-hank-aaron",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:ken-griffey-jr",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:chris-sale",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:ozzie-albies",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:ronald-acun-a-jr",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:ronald-acun-a-jr-agusti-n-rami-rez",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      },
+      {
+        "accountId": "provisional:claimant:player:paul-skenes",
+        "debitUnits": 0,
+        "creditUnits": 100,
+        "memo": "Catalog-discovery opening credit; protected pending claim"
+      }
+    ]
+  },
+  "hash": "0b7c7f48ee0d302390a300715d61af0bad057c5ca673c3d4f61a1b64d4adbff6"
+}

@@ -77,7 +77,7 @@ while unknown recipients remain in asset-specific unclaimed payable accounts.
 
 The first release is deliberately a browser simulator:
 
-- a $1 reference view defaults to a 10¢ rights-owner pool, 1¢ talent pool, and 1¢ viewer reward;
+- the legacy $1 reference view defaults to a 10¢ rights-owner pool, 1¢ talent pool, and no viewer charge or automatic reward;
 - amounts use 10,000 integer units per Infinity instead of floating-point money arithmetic;
 - duplicate event IDs are rejected;
 - events are SHA-256 linked and the full chain is revalidated;
@@ -98,3 +98,64 @@ npm run test:royalty
 
 The test covers balanced postings, default allocations, unclaimed routing, duplicate rejection,
 authoritative-receipt requirements, non-funding proposals, daily limits, and tamper detection.
+
+## AI advertising and catalog intelligence
+
+Open [`intelligence-studio.html`](intelligence-studio.html) for the full catalog brain, provisional
+company accounts, contextual campaign engine, claim queue, AI workforce, and advertising ledger.
+
+The StarQuest scan currently records 356 top-level titles, 637 episodes or presentations, 993
+content tokens, 357 unique claimant/source candidates, and 1,507 field-level claimant provenance
+records. It also creates 357 protected opening accounts with 35.70 Infinity of explicitly sourced
+catalog-discovery credits. The Goudey scanner reads the real card array and creates card-subject,
+player, featured-person, and publisher accounts without duplicating repeated names.
+
+The default advertising example charges 0.20 Infinity per qualified impression, pays each credited
+production company 0.10 Infinity, pays each credited person 0.01 Infinity, and charges the viewer
+nothing. Each business account can collect up to 1,000 Infinity per day from the labeled business
+allowance lane, retain unused positive balance, and receive customer funding through recorded
+product purchases or product Infinity coins. Accounts are non-negative by default, and user activity
+tokens are not transferred to advertisers.
+
+`collectible-value.js` records signatures, video, artwork, and other provenance attachments alongside
+non-binding market observations. Those records may support a collectible market price while keeping
+the note's face units separate and unchanged.
+
+Open [`household-sweep.html`](household-sweep.html) to record unfinished repairs and generate
+explainable, permission-controlled local service opportunities.
+
+Read [`AI_ADVERTISING_SYSTEM.md`](AI_ADVERTISING_SYSTEM.md) for the worker boundaries, accounting
+sources, claim path, StarQuest scan, Goudey card adapter, placement rules, and verification model.
+
+## Unified Infinity Wallet
+
+Open [`unified-wallet.html`](unified-wallet.html) for one wallet view spanning Infinity Mint,
+Alien Coin, Bitcoin Crusher, StarQuest and future Infinity pages. The wallet keeps source balances
+and individually owned collectibles together without pretending that unlike assets are identical.
+
+The core rules in `unified-wallet.js` are:
+
+- one wallet ID can hold balances and complete collectible tokens from several source systems;
+- receiving a Star Coin converts that receipt into a new blank Infinity token;
+- the blank token preserves its source event, content reference, creation time and hash-linked history;
+- formatting changes the same token instead of replacing its identity;
+- a collectible sale moves the entire token and provenance to the buyer while payment is recorded
+  as a separate balance transfer; and
+- duplicate source events cannot mint the same reward twice.
+
+A normal StarQuest movie unlock is not a sale of the collectible. The one-StarCoin consideration,
+the resulting blank token for the receiving rights account, and the 0.10 company / 0.01 credited-
+person Infinity allocations are separate hash-linked records. Rare authenticated collectibles are
+blocked from ordinary spending and may enter discovery-only search listings; owner approval and
+verified transfer are still required before a sale.
+
+All `www-infinity4.github.io` project pages share one browser origin, so pages using the same wallet
+engine and storage key see the same device-local wallet. Alien Coin and any differently hosted page
+use the explicit wallet-approval popup. Durable cross-device balances and real-value settlement still
+require authenticated server storage; browser storage is not represented as a bank-grade authority.
+
+`rarity-guardian.js` and `verification-gateway.js` enforce the protected-collectible and attribution
+rules. A typed name or copied signature cannot become a verified celebrity contribution. Passkeys
+may use a phone's fingerprint check without revealing fingerprint data to the site. Stripe and
+Plaid remain `NOT_CONFIGURED` until approved provider accounts, server credentials, and verified
+webhooks exist; GitHub provenance cannot replace those services.

@@ -5,8 +5,14 @@
   "main": "src/cart07.js",
   "scripts": {
     "start": "node src/cart07.js",
-    "test": "jest",
-    "test:royalty": "node royalty-ledger.test.js"
+    "test": "jest --runTestsByPath test/term.test.js test/soban.test.js",
+    "test:royalty": "node royalty-ledger.test.js",
+    "test:ad-network": "node infinity-ad-network.test.js",
+    "test:workforce": "node ai-workforce.test.js && node catalog-provenance.test.js && node household-needs.test.js && node catalog-bank-media.test.js",
+    "scan:starquest": "node scripts/scan-starquest-catalog.js ../TV-Database/js/data.js catalogs/starquest-provenance.json",
+    "scan:goudey": "node scripts/scan-goudey-catalog.js ../Goudey-Catalog/app.js catalogs/goudey-provenance.json",
+    "build:opening-accounts": "node scripts/build-opening-accounts.js catalogs/starquest-provenance.json catalogs/starquest-opening-accounts.json",
+    "test:protocols": "node royalty-ledger.test.js && node infinity-ad-network.test.js && node collectible-value.test.js && node unified-wallet.test.js && node rarity-verification.test.js && node ai-workforce.test.js && node catalog-provenance.test.js && node household-needs.test.js && node catalog-bank-media.test.js"
   },
   "repository": {
     "type": "git",

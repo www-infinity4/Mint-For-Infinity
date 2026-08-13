@@ -11,7 +11,7 @@
   const DEFAULT_POLICY = Object.freeze({
     rightsOwnerBps: 1_000,
     talentBps: 100,
-    viewerRewardUnits: 100,
+    viewerRewardUnits: 0,
     minimumCompletionBps: 5_000,
   });
   const PROGRAM_LIMITS = Object.freeze({

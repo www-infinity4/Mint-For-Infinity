@@ -1,7 +1,7 @@
 # Infinity Royalty Ledger
 
-The Infinity Royalty Ledger is the accounting contract between a verified content view, the
-viewer wallet, the content-rights payable, the talent payable, and any restricted public-benefit
+The Infinity Royalty Ledger is the accounting contract between a verified content view,
+the content-rights payable, the talent payable, and any restricted public-benefit
 programs connected to Infinity Mint.
 
 ## What this first release does
@@ -29,8 +29,8 @@ split without floating-point arithmetic.
 |---|---:|---|
 | Rights-owner pool | 10% / 10¢ | Verified wallet payable or protected unclaimed payable |
 | Talent pool | 1% / 1¢ | Split by the asset's talent schedule; otherwise unclaimed |
-| Viewer reward | 1¢ | Viewer-reward wallet lane |
-| Remaining reference value | 88¢ | Not allocated by this policy and not silently claimed |
+| Viewer charge or automatic reward | 0¢ | No viewer posting for a qualified view |
+| Remaining reference value | 89¢ | Not allocated by this legacy reference policy and not silently claimed |
 
 An asset-specific agreement can replace the default percentages. Stakeholder shares within each
 pool must total exactly 10,000 basis points.
@@ -76,7 +76,7 @@ must not independently declare legal ownership or silently release a disputed pa
 - `payable:wallet:{walletId}:rights_owner` — verified rights-owner obligation.
 - `payable:wallet:{walletId}:talent` — verified talent obligation.
 - `payable:unclaimed:{role}:{assetId}:{stakeholderId}` — protected unknown or pending obligation.
-- `ledger:wallet:{walletId}:viewer-reward` — viewer reward lane.
+- `ledger:wallet:{walletId}:viewer-reward` — retained compatibility lane; default posting is zero.
 - `simulation:*` — browser-only demonstration accounts with no spendable value.
 
 Every financial event must have equal integer debits and credits.
@@ -118,6 +118,6 @@ The next implementation should add an authenticated service and durable database
 node royalty-ledger.test.js
 ```
 
-The regression test covers balanced posting totals, the 10¢/1¢/1¢ default, verified versus
+The regression test covers balanced posting totals, the 10¢/1¢/0¢ legacy default, verified versus
 unclaimed routing, duplicate views, authoritative receipt rejection, proposal non-funding,
 daily-limit constants, and hash-chain tamper detection.
