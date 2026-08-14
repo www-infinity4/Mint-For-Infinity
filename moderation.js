@@ -7,7 +7,7 @@
   "use strict";
 
   const RUNTIME = "http://127.0.0.1:11435";
-  const POLICY_VERSION = "infinity-publication-v1";
+  const POLICY_VERSION = "infinity-mint-integrity-v2";
   const MAX_FILE_BYTES = 25 * 1024 * 1024;
   const MAX_TOTAL_BYTES = 50 * 1024 * 1024;
   const IMAGE_SCAN_BYTES = 4 * 1024 * 1024;
@@ -145,7 +145,7 @@
     try {
       const response = await runtimeRequest("/v1/moderate/image", {
         image: dataUrl,
-        prompt: "Review this Infinity Mint asset for public token publication."
+        prompt: "Review this Infinity Mint attachment for wallet integrity."
       }, fetchImpl);
       return moderationRecord(asset, response.decision, {
         digest,
@@ -185,7 +185,7 @@
   async function scanUnsupportedMedia(asset) {
     return moderationRecord(asset, "REVIEW_REQUIRED", {
       digest: await digestFile(asset.file || asset),
-      reasons: ["This media type needs a content-capable local scanner before public minting."],
+      reasons: ["This media type is recorded for an optional content audit."],
       role: "MEDIA_SAFETY",
       scope: "envelope-only"
     });
@@ -230,10 +230,10 @@
         ...deterministic,
         allowed: true,
         decision: "APPROVED",
-        publicationDecision: "REVIEW_REQUIRED",
-        source: "local-envelope-private-mint",
+        auditDecision: "REVIEW_REQUIRED",
+        source: "local-envelope-mint",
         records: [],
-        reasons: ["Local AI review is offline; safe local minting is enabled and public publication remains pending."]
+        reasons: ["Local AI review is offline; deterministic wallet-integrity checks passed."]
       };
     }
 
@@ -321,18 +321,18 @@
       return {
         allowed: true,
         decision: "APPROVED",
-        publicationDecision: "REVIEW_REQUIRED",
-        source: "local-envelope-private-mint",
+        auditDecision: "REVIEW_REQUIRED",
+        source: "local-envelope-mint",
         policyVersion: POLICY_VERSION,
         records,
-        reasons: ["Safe local envelope checks passed. AI publication review is unavailable, so the note remains private."]
+        reasons: ["Safe local envelope checks passed; the optional AI audit was unavailable."]
       };
     }
 
     return {
       allowed: decision === "APPROVED",
       decision,
-      publicationDecision: decision,
+      auditDecision: decision,
       source: "infinity-ai-runtime",
       policyVersion: POLICY_VERSION,
       records,
@@ -372,21 +372,18 @@
       event.preventDefault();
       button.disabled = true;
       delete root.__infinityMintModerationResult;
-      if (root.InfinityMintDraft && root.InfinityMintDraft.setState) root.InfinityMintDraft.setState("SCANNING");
-      status.textContent = "Checking every package component with the shared local Gemma safety gateway…";
+      if (root.InfinityMintDraft && root.InfinityMintDraft.setState) root.InfinityMintDraft.setState("CHECKING");
+      status.textContent = "Checking attachment size, type and wallet integrity…";
       status.dataset.state = "checking";
-      const result = await moderate(collectPackage(doc));
+      const packageInput = collectPackage(doc);
+      const result = deterministicCheck(packageInput.text, packageInput.files);
       status.dataset.state = result.decision.toLowerCase();
-      if (result.allowed) {
-        status.textContent = result.publicationDecision === "REVIEW_REQUIRED"
-          ? "LOCAL MINT APPROVED · this private note can be created now; AI review remains pending only for public publication."
-          : "APPROVED · package and assets passed local text/image safety roles.";
-      } else {
-        status.textContent = result.decision + " · " + (result.reasons.join(" ") || "Draft remains private until local screening succeeds.");
-      }
+      status.textContent = result.allowed
+        ? "APPROVED · wallet-integrity checks passed. Minting now."
+        : "BLOCKED · " + result.reasons.join(" ");
       button.disabled = false;
       if (!result.allowed) {
-        if (root.InfinityMintDraft && root.InfinityMintDraft.setState) root.InfinityMintDraft.setState(result.decision);
+        if (root.InfinityMintDraft && root.InfinityMintDraft.setState) root.InfinityMintDraft.setState("BLOCKED");
         return;
       }
       root.__infinityMintModerationResult = { ...result, checkedAt: new Date().toISOString() };
