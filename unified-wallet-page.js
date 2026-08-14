@@ -48,5 +48,6 @@
       finish().catch(error => { $('#approvalStatus').textContent = 'Wallet action failed: ' + error.message; });
     };
   }
+  window.infinityUnifiedWalletPage = { wallet, current, render };
   render();
 })();
