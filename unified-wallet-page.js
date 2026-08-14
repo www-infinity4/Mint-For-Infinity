@@ -22,23 +22,6 @@
   }
 
   $('#connect').onclick = () => { wallet.createWallet({ displayName: 'Unified Infinity Wallet' }); render(); };
-  $('#mintCredit').onclick = async () => {
-    const owner = current(); if (!owner) return;
-    await wallet.creditSourceCoin({ eventId: uid('wallet-event'), walletId: owner.walletId, assetCode: 'INFINITY_MINT_COIN', amount: 1, sourceSystem: 'INFINITY_MINT', sourceEventId: uid('mint'), timestamp: now() }); render();
-  };
-  $('#crusherCredit').onclick = async () => {
-    const owner = current(); if (!owner) return;
-    await wallet.creditSourceCoin({ eventId: uid('wallet-event'), walletId: owner.walletId, assetCode: 'BITCOIN_CRUSHER_COIN', amount: 1, sourceSystem: 'BITCOIN_CRUSHER', sourceEventId: uid('spin'), timestamp: now() }); render();
-  };
-  $('#alienCredit').onclick = async () => {
-    const owner = current(); if (!owner) return;
-    const id = uid('alien-coin');
-    await wallet.importCollectible({ eventId: uid('wallet-event'), tokenId: id, ownerWalletId: owner.walletId, kind: 'ALIEN_COIN', sourceSystem: 'ALIEN_COIN', sourceEventId: uid('alien-mint'), title: 'Alien Coin collectible', contentDigest: 'demo:' + id, timestamp: now() }); render();
-  };
-  $('#starCredit').onclick = async () => {
-    const owner = current(); if (!owner) return;
-    await wallet.receiveStarCoin({ eventId: uid('wallet-event'), fromWalletId: 'wallet:star-sender', toWalletId: owner.walletId, sourceSystem: 'STARQUEST', sourceEventId: uid('star-share'), sourceContentId: 'starquest:demonstration', timestamp: now() }); render();
-  };
 
   const params = new URLSearchParams(location.search);
   if (params.get('connect') === '1') {
