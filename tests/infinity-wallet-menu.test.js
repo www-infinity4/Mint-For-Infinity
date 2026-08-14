@@ -40,3 +40,19 @@ test('placement prefers an explicit hamburger wallet slot', () => {
   };
   assert.deepEqual(widget.findPlacement(doc), { container: slot, mode: 'slot' });
 });
+
+
+test('hamburger drawer outranks a wallet button outside the menu', () => {
+  const drawer = { contains() { return false; } };
+  const walletParent = {};
+  const walletButton = { id: 'walletButton', className: 'wallet', textContent: 'Wallet', parentElement: walletParent };
+  const doc = {
+    querySelector(selector) {
+      if (selector === '[data-infinity-wallet-slot]') return null;
+      if (selector === '#hamDrawer') return drawer;
+      return null;
+    },
+    querySelectorAll() { return [walletButton]; }
+  };
+  assert.deepEqual(widget.findPlacement(doc), { container: drawer, mode: 'menu' });
+});
