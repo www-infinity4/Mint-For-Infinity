@@ -10,7 +10,7 @@
   const CHANNEL = 'infinity-site-bus-v1';
   const SCHEMA = 'infinity/site-event/v1';
   const MAX_EVENTS = 5000;
-  const stopWords = new Set('a an and are as at be by for from has have how i in is it of on or that the this to was what when where who why with you your'.split(' '));
+  const stopWords = new Set('a about an and are as at be by can for from has have how i in is it me of on or please tell that the this to was what when where who why with you your'.split(' '));
 
   function clone(value) { return JSON.parse(JSON.stringify(value)); }
   function clean(value, label) {
@@ -36,8 +36,13 @@
     try { const value = JSON.parse(storage.getItem(key) || '[]'); return Array.isArray(value) ? value : []; }
     catch (_) { return []; }
   }
+  function normalizedPhrase(value) {
+    return String(value || '').toLowerCase()
+      .replace(/\b(?:[a-z][^a-z0-9]+){2,}[a-z]\b/gi, match => match.replace(/[^a-z0-9]/gi, ''))
+      .replace(/[^a-z0-9$]+/g, ' ').trim();
+  }
   function tokens(value) {
-    return [...new Set(String(value || '').toLowerCase().replace(/[^a-z0-9$]+/g, ' ').split(/\s+/).filter(word => word.length > 1 && !stopWords.has(word)))];
+    return [...new Set(normalizedPhrase(value).split(/\s+/).filter(word => word.length > 1 && !stopWords.has(word)))];
   }
 
   class InfinitySiteBus {
@@ -140,10 +145,12 @@
     }
     retrieve(query, limit = 3) {
       const queryTokens = tokens(query);
+      const queryPhrase = normalizedPhrase(query);
       return this.documents.map(document => {
         const titleTokens = tokens(document.title + ' ' + document.tags.join(' '));
         const bodyTokens = tokens(document.text);
-        let score = 0;
+        const titlePhrase = normalizedPhrase(document.title);
+        let score = titlePhrase.length > 2 && queryPhrase.includes(titlePhrase) ? 16 : 0;
         queryTokens.forEach(token => {
           if (titleTokens.includes(token)) score += 4;
           if (bodyTokens.includes(token)) score += 1;
@@ -156,7 +163,7 @@
       const matches = this.retrieve(query, 3);
       if (!matches.length) return { text: 'I do not have enough Infinity project evidence for that yet. Add the relevant research or site event and I will use it.', confidence: 0, sources: [] };
       const best = matches[0];
-      const related = matches.slice(1).map(match => match.document.title);
+      const related = matches.slice(1).filter(match => match.score >= Math.max(4, best.score * 0.5)).map(match => match.document.title);
       const suffix = related.length ? ' Related: ' + related.join(', ') + '.' : '';
       return {
         text: best.document.text + suffix,
