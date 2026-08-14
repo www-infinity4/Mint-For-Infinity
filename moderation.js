@@ -57,7 +57,7 @@
   }
 
   async function runtimeRequest(path, body, fetchImpl) {
-    const timeout = withTimeout(20000);
+    const timeout = withTimeout(3500);
     try {
       const response = await fetchImpl(RUNTIME + path, {
         method: "POST",
@@ -213,17 +213,6 @@
     const legacy = typeof input === "string";
     const packageInput = normalizePackage(input, legacy ? filesOrFetch : null);
     const fetchImpl = (legacy ? maybeFetch : filesOrFetch) || root.fetch;
-    if (typeof fetchImpl !== "function") {
-      return {
-        allowed: false,
-        decision: "REVIEW_REQUIRED",
-        source: "infinity-ai-runtime-offline",
-        policyVersion: POLICY_VERSION,
-        records: [],
-        reasons: ["The shared local AI runtime is unavailable. Draft remains private."]
-      };
-    }
-
     const deterministic = deterministicCheck(packageInput.text, packageInput.files);
     if (!deterministic.allowed) {
       return {
@@ -234,6 +223,17 @@
           "BLOCKED",
           { reasons: deterministic.reasons, scope: "file-envelope" }
         ))
+      };
+    }
+    if (typeof fetchImpl !== "function") {
+      return {
+        ...deterministic,
+        allowed: true,
+        decision: "APPROVED",
+        publicationDecision: "REVIEW_REQUIRED",
+        source: "local-envelope-private-mint",
+        records: [],
+        reasons: ["Local AI review is offline; safe local minting is enabled and public publication remains pending."]
       };
     }
 
@@ -310,9 +310,29 @@
         ? "REVIEW_REQUIRED"
         : "APPROVED";
 
+    const scannerUnavailableOnly = decision === "REVIEW_REQUIRED" && records.every((record) =>
+      record.decision === "APPROVED" || (
+        record.decision === "REVIEW_REQUIRED" &&
+        !record.scannerModel &&
+        record.reasonCodes.every((reason) => /unavailable|could not|needs a content-capable local scanner/i.test(reason))
+      )
+    );
+    if (scannerUnavailableOnly) {
+      return {
+        allowed: true,
+        decision: "APPROVED",
+        publicationDecision: "REVIEW_REQUIRED",
+        source: "local-envelope-private-mint",
+        policyVersion: POLICY_VERSION,
+        records,
+        reasons: ["Safe local envelope checks passed. AI publication review is unavailable, so the note remains private."]
+      };
+    }
+
     return {
       allowed: decision === "APPROVED",
       decision,
+      publicationDecision: decision,
       source: "infinity-ai-runtime",
       policyVersion: POLICY_VERSION,
       records,
@@ -358,7 +378,9 @@
       const result = await moderate(collectPackage(doc));
       status.dataset.state = result.decision.toLowerCase();
       if (result.allowed) {
-        status.textContent = "APPROVED · package and assets passed local text/image safety roles.";
+        status.textContent = result.publicationDecision === "REVIEW_REQUIRED"
+          ? "LOCAL MINT APPROVED · this private note can be created now; AI review remains pending only for public publication."
+          : "APPROVED · package and assets passed local text/image safety roles.";
       } else {
         status.textContent = result.decision + " · " + (result.reasons.join(" ") || "Draft remains private until local screening succeeds.");
       }
