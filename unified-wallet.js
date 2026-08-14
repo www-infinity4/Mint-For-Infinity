@@ -167,6 +167,28 @@
       if (!wallet.sourceSystems.includes(payload.sourceSystem)) wallet.sourceSystems.push(payload.sourceSystem);
       this.save(); return clone(this.state.tokens[tokenId]);
     }
+    async attachToToken(input) {
+      const token = this.state.tokens[input.tokenId];
+      invariant(token, 'Owned Infinity token is required.');
+      invariant(token.ownerWalletId === input.ownerWalletId, 'Only the current owner can attach material to this token.');
+      const attachment = {
+        attachmentId: clean(input.attachmentId, 'attachmentId'),
+        type: clean(input.type, 'attachment type').toUpperCase(),
+        title: clean(input.title, 'attachment title'),
+        sourceUrl: input.sourceUrl ? String(input.sourceUrl) : null,
+        description: input.description ? String(input.description) : null,
+        contentDigest: clean(input.contentDigest, 'contentDigest'),
+        metadata: clone(input.metadata || {}),
+        addedAt: input.timestamp || new Date().toISOString()
+      };
+      invariant(!token.attachments.some(item => item.attachmentId === attachment.attachmentId), 'Attachment already exists on this token.');
+      const payload = { tokenId: token.tokenId, ownerWalletId: token.ownerWalletId, attachment };
+      await this.append(input.eventId, 'TOKEN_ATTACHMENT_ADDED', payload, input.timestamp);
+      token.attachments.push(attachment);
+      token.provenanceEventIds.push(input.eventId);
+      this.save();
+      return clone(attachment);
+    }
     async createSale(input) {
       const token = this.state.tokens[input.tokenId];
       invariant(token && token.ownerWalletId === input.sellerWalletId, 'Seller must own the complete token.');
