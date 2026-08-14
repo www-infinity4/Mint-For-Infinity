@@ -48,6 +48,36 @@
     });
   }
 
+  function queryWords(value) {
+    return Array.from(new Set(String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(/\s+/).filter(word => word.length > 2)));
+  }
+
+  function conciseCoinAnswer(query, state) {
+    const words = queryWords(query);
+    const matches = [];
+    for (const token of Object.values(state && state.tokens || {})) {
+      const attachments = Array.isArray(token.attachments) ? token.attachments : [];
+      for (const attachment of attachments) {
+        const title = String(attachment.title || attachment.name || 'Untitled attachment');
+        const searchable = [attachment.type, title, attachment.description, attachment.sourceUrl, textFrom(attachment.metadata, 0)].filter(Boolean).join(' ').toLowerCase();
+        const score = words.reduce((total, word) => total + (searchable.includes(word) ? (title.toLowerCase().includes(word) ? 4 : 1) : 0), 0);
+        if (score) matches.push({ token, attachment, title, score });
+      }
+    }
+    matches.sort((a, b) => b.score - a.score);
+    if (!matches.length) return null;
+    const best = matches[0];
+    const attachment = best.attachment;
+    const parts = [
+      String(attachment.type || 'ATTACHMENT').replaceAll('_', ' ') + ': ' + best.title + '.',
+      attachment.description ? String(attachment.description) + '.' : '',
+      attachment.sourceUrl ? 'Source: ' + attachment.sourceUrl + '.' : '',
+      'Attached to ' + (best.token.title || best.token.tokenId) + '.',
+      attachment.contentDigest ? 'SHA-256: ' + String(attachment.contentDigest).slice(0, 16) + '…' : ''
+    ].filter(Boolean);
+    return parts.join(' ');
+  }
+
   function optionHtml(value, label) {
     const escape = input => String(input == null ? '' : input).replace(/[&<>"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char]);
     return '<option value="' + escape(value) + '">' + escape(label) + '</option>';
@@ -149,6 +179,11 @@
     function ask() {
       const query = question.value.trim();
       if (!query) return;
+      const concise = conciseCoinAnswer(query, page.wallet.state);
+      if (concise) {
+        answer.textContent = concise;
+        return;
+      }
       const result = engine.answer(query, { surface: 'UNIFIED_WALLET_COIN_INTELLIGENCE' });
       answer.textContent = result.text;
     }
@@ -168,5 +203,5 @@
     else start();
   }
 
-  return { textFrom, attachmentText, coinDocuments, mount };
+  return { textFrom, attachmentText, coinDocuments, conciseCoinAnswer, mount };
 });

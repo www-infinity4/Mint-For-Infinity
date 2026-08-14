@@ -28,3 +28,24 @@ test('attachment text safely flattens nested research records', () => {
   const text = intelligence.attachmentText({ type: 'RESEARCH', content: { sources: [{ title: 'Source A' }] } });
   assert.match(text, /Source A/);
 });
+
+
+test('coin questions return a concise matching attachment instead of dumping the whole packet', () => {
+  const answer = intelligence.conciseCoinAnswer('What Coin Intelligence implementation record is attached?', { tokens: {
+    'token:1': {
+      tokenId: 'token:1',
+      title: 'Research Coin',
+      attachments: [{
+        type: 'RESEARCH',
+        title: 'Coin Intelligence implementation record',
+        description: 'Ownership checked hashed attachment',
+        sourceUrl: 'https://example.test/pull/16',
+        contentDigest: 'cbbada934325d39bf3442efb04edeede'
+      }]
+    }
+  }});
+  assert.match(answer, /^RESEARCH: Coin Intelligence implementation record\./);
+  assert.match(answer, /Attached to Research Coin/);
+  assert.match(answer, /SHA-256: cbbada934325d39b/);
+  assert.ok(answer.length < 300);
+});
