@@ -50,11 +50,17 @@
     const existingWallet = Array.from(doc.querySelectorAll('a,button,[role="button"]')).find(element =>
       element.id !== WIDGET_ID && /wallet/i.test((element.textContent || '') + ' ' + (element.id || '') + ' ' + (element.className || ''))
     );
+    const menuSelectors = ['#hamDrawer', '.ham-drawer', '[data-menu-drawer]', '.menu-drawer', '#sidebar', '.sidebar'];
+    const menu = menuSelectors.map(selector => doc.querySelector(selector)).find(Boolean);
+    if (existingWallet && existingWallet.parentElement && menu && typeof menu.contains === 'function' && menu.contains(existingWallet)) {
+      return { container: existingWallet.parentElement, mode: 'beside-wallet', after: existingWallet };
+    }
+    if (menu) return { container: menu, mode: 'menu' };
     if (existingWallet && existingWallet.parentElement) {
       return { container: existingWallet.parentElement, mode: 'beside-wallet', after: existingWallet };
     }
 
-    const selectors = ['#hamDrawer', '.ham-drawer', '[data-menu-drawer]', '.menu-drawer', '#sidebar', '.sidebar', '[role="navigation"]', 'nav', 'footer', 'body'];
+    const selectors = ['[role="navigation"]', 'nav', 'footer', 'body'];
     for (const selector of selectors) {
       const container = doc.querySelector(selector);
       if (container) return { container, mode: selector === 'body' || selector === 'footer' ? 'flow' : 'menu' };
