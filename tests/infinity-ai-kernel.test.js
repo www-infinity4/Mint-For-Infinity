@@ -19,5 +19,12 @@ const { InfinitySiteBus, InfinityLanguageEngine, memoryStorage } = require('../i
   assert.ok(answer.confidence > 0);
   language.learnFromEvent(bus.query({ type: 'WATCH_COMPLETED' })[0]);
   assert.ok(language.retrieve('watch completed starquest').length > 0);
+  language.addDocuments([
+    { id: 'show:mash', title: 'M*A*S*H', tags: ['Drama', 'Comedy'], text: 'M*A*S*H is a StarQuest comedy drama set at a mobile army surgical hospital.' },
+    { id: 'show:abba', title: 'ABBA - Take a Chance on Me', tags: ['Music'], text: 'A playful pop video.' }
+  ]);
+  const mash = language.answer('Tell me about M*A*S*H');
+  assert.match(mash.text, /^M\*A\*S\*H is/);
+  assert.doesNotMatch(mash.text, /ABBA/);
   console.log('Infinity site bus and language engine: PASS');
 })().catch(error => { console.error(error); process.exitCode = 1; });
