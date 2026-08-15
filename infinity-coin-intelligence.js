@@ -5,6 +5,16 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (root) {
   'use strict';
 
+  const MAX_ATTACHMENT_TEXT = 8000;
+  const MAX_COIN_DOCUMENT_TEXT = 12000;
+  const QUERY_STOP_WORDS = new Set(['and','are','attached','for','from','has','have','into','is','of','on','or','the','this','to','was','what','which','with']);
+
+  function escapeHtml(input) {
+    return String(input == null ? '' : input).replace(/[&<>"']/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[char]);
+  }
+
   function textFrom(value, depth) {
     if (value == null || depth > 4) return '';
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return String(value);
@@ -23,7 +33,7 @@
       attachment && attachment.contentDigest,
       textFrom(attachment && attachment.metadata, 0),
       textFrom(attachment && attachment.content, 0)
-    ].filter(Boolean).join(' · ');
+    ].filter(Boolean).join(' · ').slice(0, MAX_ATTACHMENT_TEXT);
   }
 
   function coinDocuments(state) {
@@ -42,14 +52,14 @@
           token.contentDigest,
           attachments.length + ' attachments',
           attachments.map(attachmentText).join(' ')
-        ].filter(Boolean).join(' · '),
+        ].filter(Boolean).join(' · ').slice(0, MAX_COIN_DOCUMENT_TEXT),
         updatedAt: token.mintedAt || new Date().toISOString()
       };
     });
   }
 
   function queryWords(value) {
-    return Array.from(new Set(String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(/\s+/).filter(word => word.length > 2)));
+    return Array.from(new Set(String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(/\s+/).filter(word => word.length > 2 && !QUERY_STOP_WORDS.has(word))));
   }
 
   function conciseCoinAnswer(query, state) {
@@ -114,11 +124,14 @@
         : optionHtml('', 'No owned tokens yet');
       attachButton.disabled = !tokens.length;
       const documents = coinDocuments(wallet.state);
-      if (documents.length) engine.addDocuments(documents);
+      // Coin documents are reconstructed from the wallet on each load. Keep them
+      // in the active index without duplicating large attachment packets in the
+      // language engine's persistent browser storage.
+      if (documents.length) engine.addDocuments(documents, false);
       inventory.innerHTML = tokens.length ? tokens.map(token => {
         const attachments = Array.isArray(token.attachments) ? token.attachments : [];
-        return '<article class="token"><b>' + token.title + '</b><span>' + attachments.length + ' attachment' + (attachments.length === 1 ? '' : 's') + '</span>' +
-          attachments.map(item => '<p>' + String(item.type || 'LINK').replaceAll('_',' ') + ' · ' + (item.title || item.name || item.sourceUrl || item.contentDigest) + '</p>').join('') + '</article>';
+        return '<article class="token"><b>' + escapeHtml(token.title || token.tokenId) + '</b><span>' + attachments.length + ' attachment' + (attachments.length === 1 ? '' : 's') + '</span>' +
+          attachments.map(item => '<p>' + escapeHtml(String(item.type || 'LINK').replaceAll('_',' ')) + ' · ' + escapeHtml(item.title || item.name || item.sourceUrl || item.contentDigest) + '</p>').join('') + '</article>';
       }).join('') : '<p class="empty">Mint or receive a complete token before adding attachments.</p>';
       status.textContent = documents.length + ' owned coin document' + (documents.length === 1 ? '' : 's') + ' indexed on this device.';
     }
@@ -203,5 +216,5 @@
     else start();
   }
 
-  return { textFrom, attachmentText, coinDocuments, conciseCoinAnswer, mount };
+  return { textFrom, attachmentText, coinDocuments, conciseCoinAnswer, escapeHtml, mount };
 });
