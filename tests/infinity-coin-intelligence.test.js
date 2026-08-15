@@ -29,6 +29,25 @@ test('attachment text safely flattens nested research records', () => {
   assert.match(text, /Source A/);
 });
 
+test('coin documents bound large attachment packets before indexing', () => {
+  const documents = intelligence.coinDocuments({ tokens: {
+    'token:large': {
+      tokenId: 'token:large', title: 'Bounded research',
+      attachments: [{ type: 'RESEARCH', title: 'Large packet', content: 'x'.repeat(50000) }]
+    }
+  }});
+  assert.ok(documents[0].text.length <= 12000);
+});
+
+test('coin inventory values can be rendered without executing supplied markup', () => {
+  assert.equal(intelligence.escapeHtml('<img src=x onerror="steal()">'), '&lt;img src=x onerror=&quot;steal()&quot;&gt;');
+});
+
+test('generic question words do not select an unrelated attachment', () => {
+  const state = { tokens: { one: { tokenId: 'one', attachments: [{ type: 'LINK', title: 'Weather archive' }] } } };
+  assert.equal(intelligence.conciseCoinAnswer('What is attached to the coin?', state), null);
+});
+
 
 test('coin questions return a concise matching attachment instead of dumping the whole packet', () => {
   const answer = intelligence.conciseCoinAnswer('What Coin Intelligence implementation record is attached?', { tokens: {
