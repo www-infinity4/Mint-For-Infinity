@@ -1,0 +1,20 @@
+{
+  "name": "infinity-chat-treasury",
+  "version": "0.1.0",
+  "description": "Verify proposed Infinity treasury instruments and route accepted utility allocations through the unified wallet",
+  "author": {
+    "name": "Infinity"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Infinity Chat Treasury",
+    "shortDescription": "Verify and route Infinity AI utility allocations.",
+    "longDescription": "Connects ChatGPT workflows to the Infinity unified-wallet protocol while keeping proposal, recipient acceptance, authorization, and settlement as separate cryptographically verifiable states.",
+    "developerName": "Infinity",
+    "category": "Finance",
+    "capabilities": ["treasury verification", "wallet routing", "audit receipts"],
+    "defaultPrompt": "Inspect this Infinity treasury proposal, verify every signature and acceptance requirement, and report whether it is safe to route."
+  },
+  "mcpServers": "./.mcp.json",
+  "apps": "./.app.json"
+}
