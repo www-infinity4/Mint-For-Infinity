@@ -8,6 +8,8 @@
 
   function current() { return wallet.state.currentWalletId ? wallet.state.wallets[wallet.state.currentWalletId] : null; }
   function render() {
+    wallet.state = wallet.load();
+    wallet.processedEventIds = new Set(wallet.state.events.map(event => event.eventId));
     const connected = current();
     $('#walletId').textContent = connected ? connected.walletId : 'No wallet connected';
     $('#connect').textContent = connected ? 'Wallet connected' : 'Create Infinity wallet';
@@ -49,5 +51,7 @@
     };
   }
   window.infinityUnifiedWalletPage = { wallet, current, render };
+  window.addEventListener('storage', event => { if (event.key === InfinityUnifiedWallet.STORAGE_KEY) render(); });
+  window.addEventListener('focus', render);
   render();
 })();

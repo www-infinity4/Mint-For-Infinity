@@ -7,6 +7,7 @@
 
   const STORAGE_KEY = 'infinity_unified_wallet_v1';
   const SCHEMA = 'infinity/unified-wallet/v1';
+  let rewardQueue = Promise.resolve();
   const ASSET_CODES = new Set(['INFINITY', 'ALIEN_COIN', 'BITCOIN_CRUSHER_COIN', 'INFINITY_MINT_COIN']);
 
   function invariant(condition, message) { if (!condition) throw new Error(message); }
@@ -101,6 +102,42 @@
       if (!wallet.sourceSystems.includes(sourceSystem)) wallet.sourceSystems.push(sourceSystem);
       this.save();
       return clone(payload);
+    }
+    // Device-local game awards; not a server-verified balance or mint operation.
+    async creditStarCoinReward(input) {
+      const walletId = clean(input.walletId, 'walletId');
+      const gameId = clean(input.gameId, 'gameId');
+      const rewardKind = clean(input.rewardKind, 'rewardKind');
+      const rewardId = clean(input.rewardId, 'rewardId');
+      invariant(['LEVEL_COMPLETED', 'GAME_SHARED', 'SONG_SHARED'].includes(rewardKind), 'Unsupported game reward.');
+      const eventId = 'game-reward:' + [walletId, gameId, rewardKind, rewardId].map(encodeURIComponent).join(':');
+      const execute = async () => {
+        // Refresh within the lock so other tabs and wallet instances are preserved.
+        this.state = this.load();
+        this.processedEventIds = new Set(this.state.events.map(event => event.eventId));
+        const wallet = this.wallet(walletId);
+        if (this.processedEventIds.has(eventId)) return { credited: false, duplicate: true, amount: 0, balance: this.balance(walletId, 'STAR_COIN') };
+        const before = clone(this.state);
+        const units = Math.round(this.balance(walletId, 'STAR_COIN') * 100);
+        invariant(Number.isSafeInteger(units) && units >= 0 && Number.isSafeInteger(units + 10), 'Invalid StarCoin balance.');
+        const payload = { walletId, assetCode: 'STAR_COIN', amount: 0.1, amountHundredths: 10,
+          sourceSystem: gameId, sourceEventId: rewardId, rewardKind, verification: 'DEVICE_LOCAL', proof: clone(input.proof || {}) };
+        const body = { schema: 'infinity/unified-wallet-event/v1', sequence: this.state.events.length + 1,
+          eventId, type: 'STAR_COIN_GAME_REWARD', timestamp: input.timestamp || new Date().toISOString(),
+          prevHash: this.state.events.length ? this.state.events[this.state.events.length - 1].hash : null, payload };
+        const event = { ...body, hash: await sha256(body) };
+        this.state.events.push(event);
+        wallet.balances.STAR_COIN = (units + 10) / 100;
+        if (!wallet.sourceSystems.includes(gameId)) wallet.sourceSystems.push(gameId);
+        try { this.save(); } catch (error) { this.state = before; throw error; }
+        this.processedEventIds.add(eventId);
+        return { credited: true, duplicate: false, amount: 0.1, balance: wallet.balances.STAR_COIN, eventId };
+      };
+      const run = () => typeof navigator !== 'undefined' && navigator.locks
+        ? navigator.locks.request('infinity-unified-wallet-rewards', execute) : execute();
+      const result = rewardQueue.then(run, run);
+      rewardQueue = result.catch(() => {});
+      return result;
     }
     async receiveStarCoin(input) {
       const wallet = this.wallet(input.toWalletId);
