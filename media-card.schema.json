@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www-infinity4.github.io/Mint-For-Infinity/media-card.schema.json",
+  "title": "Infinity 1/1 Media Card",
+  "type": "object",
+  "required": ["schema", "cardId", "coinId", "mediaKind", "mediaId", "title", "edition", "capturedAt", "frame", "provenance"],
+  "properties": {
+    "schema": { "const": "infinity/media-card/v1" },
+    "cardId": { "type": "string", "pattern": "^infinity-card:[a-f0-9]{32}$" },
+    "coinId": { "type": "string", "minLength": 1 },
+    "mediaKind": { "enum": ["MOVIE", "SONG"] },
+    "mediaId": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "subtitle": { "type": ["string", "null"] },
+    "edition": { "const": "1/1" },
+    "displayMark": { "const": "Infinity 2026®" },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "frame": {
+      "type": "object",
+      "required": ["status", "imageUrl", "contentDigest", "playbackSeconds", "sourceUrl", "captureAgent"],
+      "properties": {
+        "status": { "enum": ["CAPTURED", "PENDING_SOURCE_PERMISSION"] },
+        "imageUrl": { "type": ["string", "null"] },
+        "contentDigest": { "type": ["string", "null"] },
+        "playbackSeconds": { "type": "number", "minimum": 0 },
+        "sourceUrl": { "type": ["string", "null"] },
+        "captureAgent": { "const": "SONA" },
+        "failureReason": { "type": ["string", "null"] }
+      }
+    },
+    "provenance": { "type": "object" }
+  }
+}
