@@ -14,8 +14,15 @@
     $('#walletId').textContent = connected ? connected.walletId : 'No wallet connected';
     $('#connect').textContent = connected ? 'Wallet connected' : 'Create Infinity wallet';
     $('#connect').disabled = Boolean(connected);
-    const balances = connected ? Object.entries(connected.balances) : [];
-    $('#balances').innerHTML = balances.length ? balances.map(([code, amount]) => `<article><b>${esc(code.replaceAll('_', ' '))}</b><strong>${Number(amount).toLocaleString()}</strong></article>`).join('') : '<p class="empty">No source coins recorded yet.</p>';
+    const primaryBalances = connected ? [
+      ['QUANT', 'Quants', wallet.balance(connected.walletId, 'QUANT')],
+      ['INFINITY', 'Infinity', wallet.balance(connected.walletId, 'INFINITY')],
+      ['STAR_COIN', 'Star Coins', wallet.balance(connected.walletId, 'STAR_COIN')]
+    ] : [['QUANT','Quants',0],['INFINITY','Infinity',0],['STAR_COIN','Star Coins',0]];
+    const primaryCodes = new Set(primaryBalances.map(item => item[0]));
+    const otherBalances = connected ? Object.entries(connected.balances).filter(([code, amount]) => !primaryCodes.has(code) && Number(amount) !== 0) : [];
+    $('#balances').innerHTML = primaryBalances.map(([code, label, amount]) => `<article data-asset="${esc(code)}"><b>${esc(label)}</b><strong>${Number(amount).toLocaleString(undefined,{maximumFractionDigits:2})}</strong></article>`).join('') +
+      otherBalances.map(([code, amount]) => `<article><b>${esc(code.replaceAll('_', ' '))}</b><strong>${Number(amount).toLocaleString(undefined,{maximumFractionDigits:2})}</strong></article>`).join('');
     const tokens = connected ? connected.tokenIds.map(id => wallet.state.tokens[id]).filter(Boolean) : [];
     $('#tokens').innerHTML = tokens.length ? tokens.map(token => `<article class="token"><div><b>${esc(token.title)}</b><span>${esc(token.kind)} · ${esc(token.state)}</span></div><code>${esc(token.tokenId)}</code><p>Owner: ${esc(token.ownerWalletId)}</p><p>Created: ${esc(token.mintedAt)}</p><p>Source event: ${esc(token.sourceEventId)}</p></article>`).join('') : '<p class="empty">No collectible or blank tokens yet.</p>';
     $('#eventCount').textContent = wallet.state.events.length.toLocaleString();
