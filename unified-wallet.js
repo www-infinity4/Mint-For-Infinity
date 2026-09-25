@@ -9,6 +9,7 @@
   const SCHEMA = 'infinity/unified-wallet/v1';
   let rewardQueue = Promise.resolve();
   const ASSET_CODES = new Set(['INFINITY', 'ALIEN_COIN', 'BITCOIN_CRUSHER_COIN', 'INFINITY_MINT_COIN']);
+  const SYNC_BALANCE_CODES = new Set(['QUANT', 'INFINITY', 'STAR_COIN']);
 
   function invariant(condition, message) { if (!condition) throw new Error(message); }
   function clean(value, label) { const result = String(value || '').trim(); invariant(result, label + ' is required.'); return result; }
@@ -76,6 +77,36 @@
     }
     wallet(walletId) { const wallet = this.state.wallets[walletId || this.state.currentWalletId]; invariant(wallet, 'Connected Infinity wallet is required.'); return wallet; }
     balance(walletId, assetCode) { return Number(this.wallet(walletId).balances[String(assetCode || '').toUpperCase()] || 0); }
+    syncSourceBalance(input = {}) {
+      const wallet = this.wallet(input.walletId);
+      const assetCode = clean(input.assetCode, 'assetCode').toUpperCase();
+      invariant(SYNC_BALANCE_CODES.has(assetCode), 'Synchronized balance code is not supported.');
+      const amount = Number(input.amount);
+      invariant(Number.isFinite(amount) && amount >= 0, 'amount must be a non-negative number.');
+      const sourceSystem = clean(input.sourceSystem, 'sourceSystem').toUpperCase();
+      wallet.balanceSources = wallet.balanceSources && typeof wallet.balanceSources === 'object' ? wallet.balanceSources : {};
+      wallet.balanceSourceMeta = wallet.balanceSourceMeta && typeof wallet.balanceSourceMeta === 'object' ? wallet.balanceSourceMeta : {};
+      const sources = wallet.balanceSources[assetCode] && typeof wallet.balanceSources[assetCode] === 'object'
+        ? wallet.balanceSources[assetCode] : {};
+      if (!Object.prototype.hasOwnProperty.call(sources, 'LOCAL_UNIFIED')) {
+        sources.LOCAL_UNIFIED = Number(wallet.balances[assetCode] || 0);
+      }
+      sources[sourceSystem] = amount;
+      wallet.balanceSources[assetCode] = sources;
+      wallet.balanceSourceMeta[assetCode] = wallet.balanceSourceMeta[assetCode] || {};
+      wallet.balanceSourceMeta[assetCode][sourceSystem] = {
+        sourceWalletId: input.sourceWalletId ? String(input.sourceWalletId) : null,
+        verification: String(input.verification || 'SOURCE_MIRROR').toUpperCase(),
+        syncedAt: input.syncedAt || new Date().toISOString()
+      };
+      wallet.balances[assetCode] = Object.values(sources).reduce((sum, value) => {
+        const n = Number(value);
+        return sum + (Number.isFinite(n) && n >= 0 ? n : 0);
+      }, 0);
+      if (!wallet.sourceSystems.includes(sourceSystem)) wallet.sourceSystems.push(sourceSystem);
+      this.save();
+      return { walletId: wallet.walletId, assetCode, amount: wallet.balances[assetCode], sources: clone(sources) };
+    }
     async append(eventId, type, payload, timestamp) {
       eventId = clean(eventId, 'eventId');
       invariant(!this.processedEventIds.has(eventId), 'Duplicate wallet event.');
@@ -98,7 +129,13 @@
       const payload = { walletId: wallet.walletId, assetCode, amount, sourceSystem,
         sourceEventId: clean(input.sourceEventId, 'sourceEventId'), proof: clone(input.proof || {}) };
       await this.append(input.eventId, 'SOURCE_COIN_CREDITED', payload, input.timestamp);
-      wallet.balances[assetCode] = Number(wallet.balances[assetCode] || 0) + amount;
+      if (wallet.balanceSources && wallet.balanceSources[assetCode]) {
+        const sources = wallet.balanceSources[assetCode];
+        sources.LOCAL_UNIFIED = Number(sources.LOCAL_UNIFIED || 0) + amount;
+        wallet.balances[assetCode] = Object.values(sources).reduce((sum, value) => sum + (Number(value) || 0), 0);
+      } else {
+        wallet.balances[assetCode] = Number(wallet.balances[assetCode] || 0) + amount;
+      }
       if (!wallet.sourceSystems.includes(sourceSystem)) wallet.sourceSystems.push(sourceSystem);
       this.save();
       return clone(payload);
@@ -118,8 +155,9 @@
         const wallet = this.wallet(walletId);
         if (this.processedEventIds.has(eventId)) return { credited: false, duplicate: true, amount: 0, balance: this.balance(walletId, 'STAR_COIN') };
         const before = clone(this.state);
-        const units = Math.round(this.balance(walletId, 'STAR_COIN') * 100);
-        invariant(Number.isSafeInteger(units) && units >= 0 && Number.isSafeInteger(units + 10), 'Invalid StarCoin balance.');
+        const sources = wallet.balanceSources && wallet.balanceSources.STAR_COIN ? wallet.balanceSources.STAR_COIN : null;
+        const localUnits = Math.round(Number(sources ? sources.LOCAL_UNIFIED || 0 : this.balance(walletId, 'STAR_COIN')) * 100);
+        invariant(Number.isSafeInteger(localUnits) && localUnits >= 0 && Number.isSafeInteger(localUnits + 10), 'Invalid StarCoin balance.');
         const payload = { walletId, assetCode: 'STAR_COIN', amount: 0.1, amountHundredths: 10,
           sourceSystem: gameId, sourceEventId: rewardId, rewardKind, verification: 'DEVICE_LOCAL', proof: clone(input.proof || {}) };
         const body = { schema: 'infinity/unified-wallet-event/v1', sequence: this.state.events.length + 1,
@@ -127,7 +165,12 @@
           prevHash: this.state.events.length ? this.state.events[this.state.events.length - 1].hash : null, payload };
         const event = { ...body, hash: await sha256(body) };
         this.state.events.push(event);
-        wallet.balances.STAR_COIN = (units + 10) / 100;
+        if (sources) {
+          sources.LOCAL_UNIFIED = (localUnits + 10) / 100;
+          wallet.balances.STAR_COIN = Object.values(sources).reduce((sum, value) => sum + (Number(value) || 0), 0);
+        } else {
+          wallet.balances.STAR_COIN = (localUnits + 10) / 100;
+        }
         if (!wallet.sourceSystems.includes(gameId)) wallet.sourceSystems.push(gameId);
         try { this.save(); } catch (error) { this.state = before; throw error; }
         this.processedEventIds.add(eventId);
@@ -270,5 +313,5 @@
     }
   }
 
-  return { UnifiedInfinityWallet, STORAGE_KEY, ASSET_CODES, memoryStorage, sha256 };
+  return { UnifiedInfinityWallet, STORAGE_KEY, ASSET_CODES, SYNC_BALANCE_CODES, memoryStorage, sha256 };
 });
